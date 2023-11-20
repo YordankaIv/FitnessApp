@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {scaleFontSize, verticalScale} from './scaling';
+import {horizontalScale, scaleFontSize, verticalScale} from './scaling';
 
 const globalStyle = StyleSheet.create({
   image: {
@@ -7,6 +7,10 @@ const globalStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   flex: {
+    flex: 1,
+  },
+  pageContainer: {
+    marginHorizontal: horizontalScale(24),
     flex: 1,
   },
   error: {
@@ -31,8 +35,23 @@ const globalStyle = StyleSheet.create({
   bolderWeight: {
     fontWeight: '700',
   },
+  XLSize: {
+    fontSize: scaleFontSize(25),
+  },
+  LSize: {
+    fontSize: scaleFontSize(18),
+  },
+  MSize: {
+    fontSize: scaleFontSize(16),
+  },
+  SSize: {
+    fontSize: scaleFontSize(12),
+  },
   FontPlayfairDisplay: {
     fontFamily: 'PlayfairDisplay',
+  },
+  marginBottom25: {
+    marginBottom: verticalScale(25),
   },
 });
 
