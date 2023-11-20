@@ -1,20 +1,43 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
+import {KeyboardTypeOptions, Text, View} from 'react-native';
 import Form from '../Form/Form';
-import {createUser} from '../../api/user';
+import {createUser, onCreateUserError} from '../../api/user';
 import constants from '../../utils/constants';
 import {ButtonType, Data} from '../../types/CommonTypes';
 import {useNavigation} from '@react-navigation/native';
+import {useMutation} from 'react-query';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
 const Registration: React.FC = () => {
-  const navigation = useNavigation<{jumpTo: (props: string) => void}>();
+  const navigation = useNavigation<{
+    jumpTo: (props: string) => void;
+  }>();
+  const signUpUser = useMutation({
+    mutationFn: async (data: {
+      fullName: string;
+      email: string;
+      password: string;
+    }) => {
+      return await createUser(data.fullName, data.email, data.password);
+    },
+    onError: async (error: {code: string}) => {
+      let userError = onCreateUserError(error);
+      setError(userError);
+    },
+    onSuccess: () => {
+      setError('');
+      setSuccess(constants.REGISTRATION_SUCCESS);
+      navigation.jumpTo(constants.SIGN_IN);
+    },
+  });
+
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
   const buttonType: ButtonType = 'submit';
+  const keyBoardType: KeyboardTypeOptions = 'email-address';
   const registrationFields = [
     {
       label: constants.NAME_LABEL,
@@ -27,12 +50,14 @@ const Registration: React.FC = () => {
       placeholder: constants.EMAIL_PLACEHOLDER,
       name: constants.EMAIL_LABEL.toLowerCase(),
       required: true,
+      keyboardType: keyBoardType,
     },
     {
       label: constants.PASSWORD_LABEL,
       placeholder: constants.PASSWORD_PLACEHOLDER,
       name: constants.PASSWORD_LABEL.toLowerCase(),
       required: true,
+      secureTextEntry: true,
     },
   ];
 
@@ -44,16 +69,13 @@ const Registration: React.FC = () => {
     },
   ];
 
-  const onPressSignUp = async (data?: Data) => {
+  const onPressSignUp = (data?: Data) => {
     if (data) {
-      const user = await createUser(data.name, data.email, data.password);
-      if ('error' in user) {
-        setError(user.error);
-      } else {
-        setError('');
-        setSuccess(constants.REGISTRATION_SUCCESS);
-        navigation.jumpTo(constants.SIGN_UP);
-      }
+      signUpUser.mutate({
+        fullName: data.fullName,
+        email: data.email,
+        password: data.password,
+      });
     }
   };
 

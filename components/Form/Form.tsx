@@ -33,6 +33,8 @@ const Form: React.FC<{
                 <Input
                   placeholder={field.placeholder}
                   onChangeText={val => onChange(val)}
+                  keyboardType={field.keyboardType}
+                  secureTextEntry={field.secureTextEntry}
                   inputValue={value}
                 />
               </View>
