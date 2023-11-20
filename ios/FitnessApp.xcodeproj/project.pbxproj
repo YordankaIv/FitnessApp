@@ -14,6 +14,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-FitnessApp-FitnessAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FitnessApp-FitnessAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		49ED2A2CE8674DE59E7E7F83 /* PlayfairDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8955A88532F04B1B81AC8C4E /* PlayfairDisplay-Black.ttf */; };
+		C8E8638BA5114C8F98B11F21 /* PlayfairDisplay-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C33D0DE867FB4AE6B4B7A1C8 /* PlayfairDisplay-BlackItalic.ttf */; };
+		7A4DE0EC17124F26AEADD070 /* PlayfairDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B79698B33E6D4EEDB2106F71 /* PlayfairDisplay-Bold.ttf */; };
+		E467AE01DF0946FAB569291D /* PlayfairDisplay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EEDDA3D760C4F22992C7C2B /* PlayfairDisplay-BoldItalic.ttf */; };
+		F6F69908B4EC45E6AD9FE023 /* PlayfairDisplay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57752B06DCA1431F844F405D /* PlayfairDisplay-ExtraBold.ttf */; };
+		6A3F941BB7184DAB9C98C72B /* PlayfairDisplay-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48C1FD004D4749CB9792166F /* PlayfairDisplay-ExtraBoldItalic.ttf */; };
+		C4875E7EB4C042A49CCCD7E9 /* PlayfairDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD971ED296034DE280FB5F6B /* PlayfairDisplay-Italic.ttf */; };
+		229680CE420F44CF811897E2 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4241975A2AFF4F2597A4A2C4 /* PlayfairDisplay-Medium.ttf */; };
+		1C64237A43044BAD914A50FD /* PlayfairDisplay-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE3A0EB1AA0A4A989D1135E1 /* PlayfairDisplay-MediumItalic.ttf */; };
+		3F4D667BC8DB490C9EA3A104 /* PlayfairDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D108F811BAF44FBAB955B8AD /* PlayfairDisplay-Regular.ttf */; };
+		FDFB142832EB4F35942C2C83 /* PlayfairDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4287596272FB48B5A5A537D6 /* PlayfairDisplay-SemiBold.ttf */; };
+		8E7A716E552C4EC0B31A4E90 /* PlayfairDisplay-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38E0C1D739DF442FA114B93B /* PlayfairDisplay-SemiBoldItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +56,18 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FitnessApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FitnessApp-FitnessAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessApp-FitnessAppTests.release.xcconfig"; path = "Target Support Files/Pods-FitnessApp-FitnessAppTests/Pods-FitnessApp-FitnessAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		8955A88532F04B1B81AC8C4E /* PlayfairDisplay-Black.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Black.ttf"; path = "../assets/fonts/PlayfairDisplay-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C33D0DE867FB4AE6B4B7A1C8 /* PlayfairDisplay-BlackItalic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-BlackItalic.ttf"; path = "../assets/fonts/PlayfairDisplay-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B79698B33E6D4EEDB2106F71 /* PlayfairDisplay-Bold.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Bold.ttf"; path = "../assets/fonts/PlayfairDisplay-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3EEDDA3D760C4F22992C7C2B /* PlayfairDisplay-BoldItalic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-BoldItalic.ttf"; path = "../assets/fonts/PlayfairDisplay-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		57752B06DCA1431F844F405D /* PlayfairDisplay-ExtraBold.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-ExtraBold.ttf"; path = "../assets/fonts/PlayfairDisplay-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		48C1FD004D4749CB9792166F /* PlayfairDisplay-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-ExtraBoldItalic.ttf"; path = "../assets/fonts/PlayfairDisplay-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD971ED296034DE280FB5F6B /* PlayfairDisplay-Italic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Italic.ttf"; path = "../assets/fonts/PlayfairDisplay-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4241975A2AFF4F2597A4A2C4 /* PlayfairDisplay-Medium.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Medium.ttf"; path = "../assets/fonts/PlayfairDisplay-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE3A0EB1AA0A4A989D1135E1 /* PlayfairDisplay-MediumItalic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-MediumItalic.ttf"; path = "../assets/fonts/PlayfairDisplay-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D108F811BAF44FBAB955B8AD /* PlayfairDisplay-Regular.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-Regular.ttf"; path = "../assets/fonts/PlayfairDisplay-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4287596272FB48B5A5A537D6 /* PlayfairDisplay-SemiBold.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-SemiBold.ttf"; path = "../assets/fonts/PlayfairDisplay-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		38E0C1D739DF442FA114B93B /* PlayfairDisplay-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "PlayfairDisplay-SemiBoldItalic.ttf"; path = "../assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +146,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				5D7AE39AAD1B47BFA943D9C4 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +172,26 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		5D7AE39AAD1B47BFA943D9C4 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				8955A88532F04B1B81AC8C4E /* PlayfairDisplay-Black.ttf */,
+				C33D0DE867FB4AE6B4B7A1C8 /* PlayfairDisplay-BlackItalic.ttf */,
+				B79698B33E6D4EEDB2106F71 /* PlayfairDisplay-Bold.ttf */,
+				3EEDDA3D760C4F22992C7C2B /* PlayfairDisplay-BoldItalic.ttf */,
+				57752B06DCA1431F844F405D /* PlayfairDisplay-ExtraBold.ttf */,
+				48C1FD004D4749CB9792166F /* PlayfairDisplay-ExtraBoldItalic.ttf */,
+				AD971ED296034DE280FB5F6B /* PlayfairDisplay-Italic.ttf */,
+				4241975A2AFF4F2597A4A2C4 /* PlayfairDisplay-Medium.ttf */,
+				FE3A0EB1AA0A4A989D1135E1 /* PlayfairDisplay-MediumItalic.ttf */,
+				D108F811BAF44FBAB955B8AD /* PlayfairDisplay-Regular.ttf */,
+				4287596272FB48B5A5A537D6 /* PlayfairDisplay-SemiBold.ttf */,
+				38E0C1D739DF442FA114B93B /* PlayfairDisplay-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +289,18 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				49ED2A2CE8674DE59E7E7F83 /* PlayfairDisplay-Black.ttf in Resources */,
+				C8E8638BA5114C8F98B11F21 /* PlayfairDisplay-BlackItalic.ttf in Resources */,
+				7A4DE0EC17124F26AEADD070 /* PlayfairDisplay-Bold.ttf in Resources */,
+				E467AE01DF0946FAB569291D /* PlayfairDisplay-BoldItalic.ttf in Resources */,
+				F6F69908B4EC45E6AD9FE023 /* PlayfairDisplay-ExtraBold.ttf in Resources */,
+				6A3F941BB7184DAB9C98C72B /* PlayfairDisplay-ExtraBoldItalic.ttf in Resources */,
+				C4875E7EB4C042A49CCCD7E9 /* PlayfairDisplay-Italic.ttf in Resources */,
+				229680CE420F44CF811897E2 /* PlayfairDisplay-Medium.ttf in Resources */,
+				1C64237A43044BAD914A50FD /* PlayfairDisplay-MediumItalic.ttf in Resources */,
+				3F4D667BC8DB490C9EA3A104 /* PlayfairDisplay-Regular.ttf in Resources */,
+				FDFB142832EB4F35942C2C83 /* PlayfairDisplay-SemiBold.ttf in Resources */,
+				8E7A716E552C4EC0B31A4E90 /* PlayfairDisplay-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
