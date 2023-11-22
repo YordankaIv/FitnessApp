@@ -22,3 +22,6 @@ export const User = createSlice({
 
 export const {logIn, resetToInitialState, updateToken} = User.actions;
 export default User.reducer;
+
+export const selectUser = (state: {user: {[key: string]: string}}) =>
+  state.user;

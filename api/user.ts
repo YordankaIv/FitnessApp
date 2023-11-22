@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import constants from '../utils/constants';
+import {errors} from '../utils/constants';
 import store from '../redux/store';
 import {updateToken} from '../redux/reducers/User';
 
@@ -15,12 +15,12 @@ export const createUser = async (
 
 export const onCreateUserError = (error: {code: string}) => {
   if (error.code === 'auth/email-already-in-use') {
-    return constants.USER_IN_USE_EMAIL_ERROR;
+    return errors.USER_IN_USE_EMAIL_ERROR;
   } else if (error.code === 'auth/invalid-email') {
-    return constants.USER_INVALID_EMAIL_ERROR;
+    return errors.USER_INVALID_EMAIL_ERROR;
   }
 
-  return constants.USER_CREATE_ERROR;
+  return errors.USER_CREATE_ERROR;
 };
 
 export const loginUser = async (email: string, password: string) => {

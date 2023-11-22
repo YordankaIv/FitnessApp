@@ -5,7 +5,7 @@ import {Colors} from '../../utils/colors';
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
-const RadioButton: React.FC<{
+const RadioGroup: React.FC<{
   data: {value: string}[];
   onSelect: (option: string) => void;
   selectedValue?: string;
@@ -14,16 +14,18 @@ const RadioButton: React.FC<{
     selectedValue ?? null,
   );
 
+  const selectOption = (selectedOption: string) => {
+    setUserOption(selectedOption);
+    onSelect(selectedOption);
+  };
+
   return (
     <View>
       {data.map((item, index) => (
         <Pressable
           key={index}
           style={item.value === userOption ? style.selected : style.unselected}
-          onPress={() => {
-            setUserOption(item.value);
-            onSelect(item.value);
-          }}>
+          onPress={() => selectOption(item.value)}>
           <Text
             style={[
               globalStyle.FontPlayfairDisplay,
@@ -41,4 +43,4 @@ const RadioButton: React.FC<{
   );
 };
 
-export default RadioButton;
+export default RadioGroup;

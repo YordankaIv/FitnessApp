@@ -1,4 +1,4 @@
-import {KeyboardTypeOptions} from 'react-native';
+import {KeyboardTypeOptions, ReturnKeyTypeOptions} from 'react-native';
 
 export type Data = {[key: string]: string};
 export type ButtonType = 'submit' | 'reset' | 'button';
@@ -16,4 +16,14 @@ export type FormButton = {
   title: string;
   type?: ButtonType;
   onPress: (data?: Data) => void;
+};
+
+export type InputProps = {
+  placeholder?: string;
+  inputValue?: string;
+  label?: string;
+  returnKeyType?: ReturnKeyTypeOptions;
+  onChangeText?: (val: string) => void;
+  keyboardType?: KeyboardTypeOptions;
+  secureTextEntry?: boolean;
 };

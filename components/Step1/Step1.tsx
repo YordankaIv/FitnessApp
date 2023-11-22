@@ -1,51 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, KeyboardTypeOptions, Text, View} from 'react-native';
 import {useWizard} from 'react-use-wizard';
 import {ButtonType, Data} from '../../types/CommonTypes';
-import constants from '../../utils/constants';
-import Form from '../Form/Form';
+import {auth, wizard} from '../../utils/constants';
+import {Form} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateUserData} from '../../redux/reducers/WizardData';
+import {selectWizard, updateUserData} from '../../redux/reducers/WizardData';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-export const Step1 = () => {
+const Step1 = () => {
   const dispatch = useDispatch();
   const {nextStep} = useWizard();
-  const [formData, setFormData] = useState({});
-  const wizardData = useSelector(
-    (state: {
-      wizard: {name: string; age: number; weight: number; height: number};
-    }) => state.wizard,
-  );
-
-  useEffect(() => {
-    setFormData(wizardData);
-  }, []);
+  const wizardData = useSelector(selectWizard);
 
   const type: ButtonType = 'submit';
   const keyboardType: KeyboardTypeOptions = 'numeric';
   const userFields = [
     {
-      label: constants.NAME_LABEL,
-      name: constants.NAME.toLowerCase(),
+      label: auth.NAME_LABEL,
+      name: auth.NAME.toLowerCase(),
       required: false,
     },
     {
-      label: constants.AGE,
-      name: constants.AGE.toLowerCase(),
-      required: false,
-      keyboardType,
-    },
-    {
-      label: constants.WEIGHT,
-      name: constants.WEIGHT.toLowerCase(),
+      label: wizard.AGE,
+      name: wizard.AGE.toLowerCase(),
       required: false,
       keyboardType,
     },
     {
-      label: constants.HEIGHT,
-      name: constants.HEIGHT.toLowerCase(),
+      label: wizard.WEIGHT,
+      name: wizard.WEIGHT.toLowerCase(),
+      required: false,
+      keyboardType,
+    },
+    {
+      label: wizard.HEIGHT,
+      name: wizard.HEIGHT.toLowerCase(),
       required: false,
       keyboardType,
     },
@@ -60,7 +51,7 @@ export const Step1 = () => {
 
   const userButtons = [
     {
-      title: constants.NEXT,
+      title: wizard.NEXT,
       type,
       onPress: (data?: Data) => onPressNext(data),
     },
@@ -78,17 +69,21 @@ export const Step1 = () => {
               globalStyle.bolderWeight,
               globalStyle.header,
             ]}>
-            {constants.ABOUT_YOU}
+            {wizard.ABOUT_YOU}
           </Text>
         </View>
       </View>
       <View style={globalStyle.flex}>
-        <Form
-          fields={userFields}
-          buttons={userButtons}
-          formData={formData ?? undefined}
-        />
+        {wizardData && (
+          <Form
+            fields={userFields}
+            buttons={userButtons}
+            formData={wizardData}
+          />
+        )}
       </View>
     </View>
   );
 };
+
+export default Step1;

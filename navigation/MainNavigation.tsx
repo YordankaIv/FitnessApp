@@ -1,9 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
-import Intro from '../screens/Intro/Intro';
-import Account from '../screens/Account/Account';
-import FitnessWizard from '../screens/FitnessWizard/FitnessWizard';
+import {FitnessWizard, Intro, Account} from '../screens';
 
 const Stack = createStackNavigator();
 

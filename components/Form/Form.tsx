@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
-import Input from '../Input/Input';
 import {Controller, useForm} from 'react-hook-form';
-import Button from '../Button/Button';
-import {Data, FormButton, FormField} from '../../types/CommonTypes';
+import {Button, Input} from '../../components';
+import {FormButton, FormField} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -11,7 +10,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 const Form: React.FC<{
   fields: FormField[];
   buttons: FormButton[];
-  formData?: Data;
+  formData?: {[key: string]: string | number};
 }> = ({fields, buttons, formData}) => {
   const {
     handleSubmit,
@@ -23,6 +22,16 @@ const Form: React.FC<{
   useEffect(() => {
     reset(formData);
   }, [formData]);
+
+  const onChangeValue = (
+    value: string,
+    field: FormField,
+    onChange: (event: string) => void,
+  ) => {
+    const currentVal =
+      field.keyboardType === 'numeric' ? value.replace(/[^0-9]/g, '') : value;
+    onChange(currentVal);
+  };
 
   return (
     <View style={[globalStyle.flex, style.formContainer]}>
@@ -42,13 +51,8 @@ const Form: React.FC<{
               <View style={style.field}>
                 <Input
                   placeholder={field.placeholder}
-                  onChangeText={val => {
-                    const currentVal =
-                      field.keyboardType === 'numeric'
-                        ? val.replace(/[^0-9]/g, '')
-                        : val;
-                    onChange(currentVal);
-                  }}
+                  onChangeText={val => onChangeValue(val, field, onChange)}
+                  returnKeyType={'next'}
                   keyboardType={field.keyboardType}
                   secureTextEntry={field.secureTextEntry}
                   inputValue={value}

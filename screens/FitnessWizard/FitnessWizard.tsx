@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Image, Keyboard, SafeAreaView, ScrollView} from 'react-native';
 import {Wizard} from 'react-use-wizard';
-import {Step1} from '../../components/Step1/Step1';
-import {Step2} from '../../components/Step2/Step2';
-import WizardFooter from '../../components/WizardFooter/WizardFooter';
+import {Step1, Step2, WizardFooter} from '../../components';
+import {wizard} from '../../utils/constants';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -37,7 +36,9 @@ const FitnessWizard: React.FC = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={globalStyle.pageContainer}>
-        <Wizard startIndex={0} footer={<WizardFooter />}>
+        <Wizard
+          startIndex={wizard.DEFAULT_WIZARD_INDEX}
+          footer={<WizardFooter />}>
           <Step1 />
           <Step2 />
         </Wizard>

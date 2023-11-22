@@ -1,9 +1,8 @@
 import React from 'react';
 import {ImageBackground, SafeAreaView, ScrollView} from 'react-native';
-import constants from '../../utils/constants';
+import {auth} from '../../utils/constants';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Login from '../../components/Login/Login';
-import Registration from '../../components/Registration/Registration';
+import {Login, Registration} from '../../components';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -28,8 +27,8 @@ const Account: React.FC = () => {
               tabBarContentContainerStyle: style.tabBarContentContainer,
             }}
             sceneContainerStyle={style.sceneContainer}>
-            <Tab.Screen name={constants.SIGN_IN} component={Login} />
-            <Tab.Screen name={constants.SIGN_UP} component={Registration} />
+            <Tab.Screen name={auth.SIGN_IN} component={Login} />
+            <Tab.Screen name={auth.SIGN_UP} component={Registration} />
           </Tab.Navigator>
         </ScrollView>
       </ImageBackground>

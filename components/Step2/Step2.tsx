@@ -1,22 +1,22 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
-import RadioButton from '../RadioButton/RadioButton';
-import constants from '../../utils/constants';
+import {RadioGroup} from '../../components';
+import {wizard} from '../../utils/constants';
 import {updateUserData} from '../../redux/reducers/WizardData';
 import {useDispatch, useSelector} from 'react-redux';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-export const Step2 = () => {
+const Step2 = () => {
   const dispatch = useDispatch();
   const wizardData = useSelector(
     (state: {wizard: {level: string}}) => state.wizard,
   );
 
-  const data = [
-    {value: constants.BEGINNER},
-    {value: constants.INTERMEDIATE},
-    {value: constants.ADVANCED},
+  const fitnessLevels = [
+    {value: wizard.BEGINNER},
+    {value: wizard.INTERMEDIATE},
+    {value: wizard.ADVANCED},
   ];
 
   const onSelectOption = (option: string) => {
@@ -35,13 +35,13 @@ export const Step2 = () => {
               globalStyle.bolderWeight,
               globalStyle.header,
             ]}>
-            {constants.FITNESS_LEVEL}
+            {wizard.FITNESS_LEVEL}
           </Text>
         </View>
       </View>
       <View style={globalStyle.marginTop30}>
-        <RadioButton
-          data={data}
+        <RadioGroup
+          data={fitnessLevels}
           onSelect={onSelectOption}
           selectedValue={wizardData.level}
         />
@@ -49,3 +49,5 @@ export const Step2 = () => {
     </View>
   );
 };
+
+export default Step2;

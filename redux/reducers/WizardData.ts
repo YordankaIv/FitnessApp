@@ -17,3 +17,6 @@ export const WizardData = createSlice({
 
 export const {updateUserData, resetToInitialState} = WizardData.actions;
 export default WizardData.reducer;
+
+export const selectWizard = (state: {wizard: {[key: string]: string}}) =>
+  state.wizard;

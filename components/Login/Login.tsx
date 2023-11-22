@@ -1,7 +1,7 @@
 import React from 'react';
 import {KeyboardTypeOptions, Text, View} from 'react-native';
-import Form from '../Form/Form';
-import constants from '../../utils/constants';
+import {Form} from '../../components';
+import {auth} from '../../utils/constants';
 import {loginUser} from '../../api/user';
 import {ButtonType, Data} from '../../types/CommonTypes';
 import {useMutation} from 'react-query';
@@ -38,16 +38,16 @@ const Login: React.FC = () => {
   const keyboardType: KeyboardTypeOptions = 'email-address';
   const loginFields = [
     {
-      label: constants.EMAIL_LABEL,
-      placeholder: constants.EMAIL_PLACEHOLDER,
-      name: constants.EMAIL_LABEL.toLowerCase(),
+      label: auth.EMAIL_LABEL,
+      placeholder: auth.EMAIL_PLACEHOLDER,
+      name: auth.EMAIL_LABEL.toLowerCase(),
       required: true,
       keyboardType,
     },
     {
-      label: constants.PASSWORD_LABEL,
-      placeholder: constants.PASSWORD_PLACEHOLDER,
-      name: constants.PASSWORD_LABEL.toLowerCase(),
+      label: auth.PASSWORD_LABEL,
+      placeholder: auth.PASSWORD_PLACEHOLDER,
+      name: auth.PASSWORD_LABEL.toLowerCase(),
       required: true,
       secureTextEntry: true,
     },
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
 
   const loginButtons = [
     {
-      title: constants.SIGN_IN,
+      title: auth.SIGN_IN,
       type,
       onPress: (data?: Data) => onPressSignIn(data),
     },
