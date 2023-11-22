@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {RootState} from '../../types/CommonTypes';
 
 const initialState = {};
 
@@ -18,5 +19,4 @@ export const WizardData = createSlice({
 export const {updateUserData, resetToInitialState} = WizardData.actions;
 export default WizardData.reducer;
 
-export const selectWizard = (state: {wizard: {[key: string]: string}}) =>
-  state.wizard;
+export const selectWizard = (state: RootState) => state.wizard;

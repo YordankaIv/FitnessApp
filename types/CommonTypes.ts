@@ -1,7 +1,9 @@
 import {KeyboardTypeOptions, ReturnKeyTypeOptions} from 'react-native';
+import store from '../redux/store';
 
 export type Data = {[key: string]: string};
 export type ButtonType = 'submit' | 'reset' | 'button';
+export type RootState = ReturnType<typeof store.getState>;
 
 export type FormField = {
   label: string;
