@@ -35,7 +35,7 @@ const Intro: React.FC = () => {
                     globalStyle.FontPlayfairDisplay,
                     globalStyle.XLSize,
                     globalStyle.bolderWeight,
-                    style.header,
+                    globalStyle.header,
                   ]}>
                   {constants.APP_NAME}
                 </Text>
@@ -45,7 +45,7 @@ const Intro: React.FC = () => {
                   style={[
                     globalStyle.FontPlayfairDisplay,
                     globalStyle.MSize,
-                    style.header,
+                    globalStyle.header,
                   ]}>
                   {constants.HEADER}
                 </Text>

@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
 import Intro from '../screens/Intro/Intro';
 import Account from '../screens/Account/Account';
+import FitnessWizard from '../screens/FitnessWizard/FitnessWizard';
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,7 @@ const Authenticated = () => {
     <Stack.Navigator
       initialRouteName={Routes.FitnessWizard}
       screenOptions={{header: () => null, headerShown: false}}>
-      {/* <Stack.Screen name={Routes.FitnessWizard} component={FitnessWizard} /> */}
+      <Stack.Screen name={Routes.FitnessWizard} component={FitnessWizard} />
     </Stack.Navigator>
   );
 };

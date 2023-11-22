@@ -5,7 +5,7 @@ import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const Input: React.FC<{
-  placeholder: string;
+  placeholder?: string;
   inputValue?: string;
   label?: string;
   onChangeText?: (val: string) => void;

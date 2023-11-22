@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Input from '../Input/Input';
 import {Controller, useForm} from 'react-hook-form';
 import Button from '../Button/Button';
-import {FormButton, FormField} from '../../types/CommonTypes';
+import {Data, FormButton, FormField} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -11,8 +11,18 @@ import globalStyle from '../../assets/styles/globalStyle';
 const Form: React.FC<{
   fields: FormField[];
   buttons: FormButton[];
-}> = ({fields, buttons}) => {
-  const {handleSubmit, control} = useForm();
+  formData?: Data;
+}> = ({fields, buttons, formData}) => {
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: {isValid},
+  } = useForm();
+
+  useEffect(() => {
+    reset(formData);
+  }, [formData]);
 
   return (
     <View style={[globalStyle.flex, style.formContainer]}>
@@ -32,7 +42,13 @@ const Form: React.FC<{
               <View style={style.field}>
                 <Input
                   placeholder={field.placeholder}
-                  onChangeText={val => onChange(val)}
+                  onChangeText={val => {
+                    const currentVal =
+                      field.keyboardType === 'numeric'
+                        ? val.replace(/[^0-9]/g, '')
+                        : val;
+                    onChange(currentVal);
+                  }}
                   keyboardType={field.keyboardType}
                   secureTextEntry={field.secureTextEntry}
                   inputValue={value}
@@ -40,7 +56,7 @@ const Form: React.FC<{
               </View>
             )}
             name={field.name}
-            rules={{required: true}}
+            rules={{required: field.required}}
           />
         </View>
       ))}
@@ -49,6 +65,7 @@ const Form: React.FC<{
         <View key={button.title} style={style.buttonContainer}>
           <Button
             title={button.title}
+            isDisabled={!isValid}
             onPress={
               button.type === 'submit'
                 ? handleSubmit(button.onPress)

@@ -5,9 +5,9 @@ export type ButtonType = 'submit' | 'reset' | 'button';
 
 export type FormField = {
   label: string;
-  placeholder: string;
   name: string;
   required: boolean;
+  placeholder?: string;
   keyboardType?: KeyboardTypeOptions | undefined;
   secureTextEntry?: boolean | undefined;
 };

@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {horizontalScale, scaleFontSize, verticalScale} from './scaling';
+import {Colors} from '../../utils/colors';
 
 const globalStyle = StyleSheet.create({
   image: {
@@ -8,6 +9,16 @@ const globalStyle = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  header: {
+    color: Colors.white,
+    textAlign: 'center',
+  },
+  wizardHeader: {
+    position: 'absolute',
+    bottom: verticalScale(50),
+    left: horizontalScale(10),
+    width: '60%',
   },
   pageContainer: {
     marginHorizontal: horizontalScale(24),
@@ -52,6 +63,14 @@ const globalStyle = StyleSheet.create({
   },
   marginBottom25: {
     marginBottom: verticalScale(25),
+  },
+  marginTop30: {
+    marginTop: verticalScale(30),
+  },
+  imageBottom: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
   },
 });
 

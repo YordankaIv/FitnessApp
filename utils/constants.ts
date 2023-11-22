@@ -7,6 +7,8 @@ const constants = {
   NEXT: 'Next',
   SIGN_IN: 'Sign in',
   SIGN_UP: 'Sign up',
+  BACK: 'Back',
+  SAVE: 'Save',
   REGISTRATION_BUTTON_LABEL: "Don't have an account? Sign up now!",
   EMAIL_LABEL: 'Email',
   EMAIL_PLACEHOLDER: 'Enter your email...',
@@ -16,6 +18,17 @@ const constants = {
   NAME: 'name',
   NAME_PLACEHOLDER: 'Enter your name...',
   REGISTRATION_SUCCESS: 'You have successfully registered!',
+  GENDER: 'Gender',
+  AGE: 'Age',
+  WEIGHT: 'Weight (kg)',
+  HEIGHT: 'Height (cm)',
+  ABOUT_YOU: 'What are your body measurements?',
+  ABOUT_YOU_DESC: 'FILL OUT YOUR DATA',
+  FITNESS_LEVEL: 'What is your level of fitness?',
+  BEGINNER: 'Beginner',
+  INTERMEDIATE: 'Intermediate',
+  ADVANCED: 'Advanced',
+  USERS_PATH: 'users',
 };
 
 export default constants;

@@ -14,7 +14,8 @@ const Registration: React.FC = () => {
   const navigation = useNavigation<{
     jumpTo: (props: string) => void;
   }>();
-  const signUpUser = useMutation({
+
+  const {mutate: mutateSignUp} = useMutation({
     mutationFn: async (data: {
       fullName: string;
       email: string;
@@ -36,8 +37,8 @@ const Registration: React.FC = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  const buttonType: ButtonType = 'submit';
-  const keyBoardType: KeyboardTypeOptions = 'email-address';
+  const type: ButtonType = 'submit';
+  const keyboardType: KeyboardTypeOptions = 'email-address';
   const registrationFields = [
     {
       label: constants.NAME_LABEL,
@@ -50,7 +51,7 @@ const Registration: React.FC = () => {
       placeholder: constants.EMAIL_PLACEHOLDER,
       name: constants.EMAIL_LABEL.toLowerCase(),
       required: true,
-      keyboardType: keyBoardType,
+      keyboardType,
     },
     {
       label: constants.PASSWORD_LABEL,
@@ -64,14 +65,14 @@ const Registration: React.FC = () => {
   const registrationButtons = [
     {
       title: constants.SIGN_UP,
-      type: buttonType,
+      type,
       onPress: (data?: Data) => onPressSignUp(data),
     },
   ];
 
   const onPressSignUp = (data?: Data) => {
     if (data) {
-      signUpUser.mutate({
+      mutateSignUp({
         fullName: data.fullName,
         email: data.email,
         password: data.password,
