@@ -11,9 +11,11 @@ import {
   REGISTER,
 } from 'redux-persist';
 import User from './reducers/User';
+import WizardData from './reducers/WizardData';
 
 const rootReducer = combineReducers({
   user: User,
+  wizard: WizardData,
 });
 
 const configuration = {

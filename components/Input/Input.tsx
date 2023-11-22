@@ -1,18 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, KeyboardTypeOptions} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
+import {InputProps} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
-const Input: React.FC<{
-  placeholder: string;
-  inputValue?: string;
-  label?: string;
-  onChangeText?: (val: string) => void;
-  keyboardType?: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
-}> = ({
+const Input: React.FC<InputProps> = ({
   label,
+  returnKeyType = 'done',
   placeholder,
   inputValue,
   onChangeText,
@@ -36,12 +31,13 @@ const Input: React.FC<{
       <TextInput
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
-        placeholder={placeholder ?? undefined}
+        placeholder={placeholder}
         style={[
           style.input,
           globalStyle.FontPlayfairDisplay,
           globalStyle.MSize,
         ]}
+        returnKeyType={returnKeyType}
         value={inputValue ?? value}
         onChangeText={val => {
           setValue(val);

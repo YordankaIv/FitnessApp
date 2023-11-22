@@ -7,10 +7,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import Button from '../../components/Button/Button';
+import {Button} from '../../components';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../navigation/Routes';
-import constants from '../../utils/constants';
+import {intro, wizard} from '../../utils/constants';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -35,9 +35,9 @@ const Intro: React.FC = () => {
                     globalStyle.FontPlayfairDisplay,
                     globalStyle.XLSize,
                     globalStyle.bolderWeight,
-                    style.header,
+                    globalStyle.header,
                   ]}>
-                  {constants.APP_NAME}
+                  {intro.APP_NAME}
                 </Text>
               </View>
               <View>
@@ -45,15 +45,15 @@ const Intro: React.FC = () => {
                   style={[
                     globalStyle.FontPlayfairDisplay,
                     globalStyle.MSize,
-                    style.header,
+                    globalStyle.header,
                   ]}>
-                  {constants.HEADER}
+                  {intro.HEADER}
                 </Text>
               </View>
             </View>
             <View>
               <Button
-                title={constants.NEXT}
+                title={wizard.NEXT}
                 onPress={() => navigation.navigate(Routes.Account)}
               />
             </View>

@@ -10,6 +10,7 @@ const style = StyleSheet.create({
     marginVertical: verticalScale(8),
   },
   label: {
+    color: Colors.black,
     marginBottom: verticalScale(5),
   },
   field: {

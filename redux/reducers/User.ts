@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {RootState} from '../../types/CommonTypes';
 
 const initialState = {
   isLoggedIn: false,
@@ -22,3 +23,5 @@ export const User = createSlice({
 
 export const {logIn, resetToInitialState, updateToken} = User.actions;
 export default User.reducer;
+
+export const selectUser = (state: RootState) => state.user;
