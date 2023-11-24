@@ -17,12 +17,6 @@ const Input: React.FC<InputProps> = ({
 }) => {
   const [value, setValue] = useState('');
 
-  const onBlurInput = () => {
-    if (onInputBlur) {
-      onInputBlur(value);
-    }
-  };
-
   return (
     <View>
       {label && (
@@ -46,7 +40,7 @@ const Input: React.FC<InputProps> = ({
         ]}
         returnKeyType={returnKeyType}
         value={inputValue ?? value}
-        onBlur={onBlurInput}
+        onBlur={() => onInputBlur?.(value)}
         onChangeText={val => {
           setValue(val);
           onChangeText && onChangeText(val);
