@@ -13,11 +13,6 @@ const style = StyleSheet.create({
     color: Colors.black,
     marginBottom: verticalScale(5),
   },
-  field: {
-    backgroundColor: Colors.lightPink,
-    borderRadius: horizontalScale(25),
-    paddingHorizontal: horizontalScale(10),
-  },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',

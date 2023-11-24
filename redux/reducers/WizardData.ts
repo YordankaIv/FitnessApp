@@ -1,7 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../types/CommonTypes';
 
-const initialState = {};
+const initialState = {
+  name: '',
+  level: '',
+  goal: '',
+  workouts: [],
+};
 
 export const WizardData = createSlice({
   name: 'wizard',
