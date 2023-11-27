@@ -3,6 +3,9 @@ import {RootState} from '../../types/CommonTypes';
 
 const initialState = {
   name: '',
+  age: '',
+  weight: '',
+  height: '',
   level: '',
   goal: '',
   workouts: [],

@@ -5,6 +5,8 @@ export type Data = {[key: string]: string};
 export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 
+export type ListItem = {label: string; checked: boolean};
+
 export type FormField = {
   label: string;
   name: string;

@@ -67,6 +67,9 @@ const globalStyle = StyleSheet.create({
   marginTop30: {
     marginTop: verticalScale(30),
   },
+  marginRight20: {
+    marginRight: horizontalScale(20),
+  },
   imageBottom: {
     position: 'absolute',
     bottom: 0,

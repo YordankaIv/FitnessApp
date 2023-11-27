@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Keyboard, SafeAreaView, ScrollView} from 'react-native';
+import {Image, SafeAreaView, ScrollView} from 'react-native';
 import {Wizard} from 'react-use-wizard';
 import {
   Step1,
   Step2,
   Step3,
   Step4,
+  Step5,
+  Step6,
   StepWrapper,
   WizardFooter,
 } from '../../components';
 import {wizard} from '../../utils/constants';
+import {keyboardListeners} from '../../utils/utils';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -21,21 +24,15 @@ const FitnessWizard: React.FC = () => {
     {component: Step2, header: wizard.FITNESS_LEVEL},
     {component: Step3, header: wizard.FITNESS_GOAL},
     {component: Step4, header: wizard.FITNESS_WORKOUTS},
+    {component: Step5, header: wizard.SUMMARY},
+    {component: Step6, header: wizard.FINAL},
   ];
 
   useEffect(() => {
-    const show = Keyboard.addListener('keyboardDidShow', () => {
-      setStatus(true);
-    });
-
-    const hide = Keyboard.addListener('keyboardDidHide', () => {
-      setStatus(false);
-    });
-
-    return () => {
-      show.remove();
-      hide.remove();
-    };
+    keyboardListeners(
+      () => setStatus(true),
+      () => setStatus(false),
+    );
   }, []);
 
   return (
