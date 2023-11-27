@@ -6,7 +6,7 @@ import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const RadioGroup: React.FC<{
-  data: {value: string}[];
+  data: Array<{value: string}>;
   onSelect: (option: string) => void;
   selectedValue?: string;
 }> = ({data, onSelect, selectedValue}) => {
