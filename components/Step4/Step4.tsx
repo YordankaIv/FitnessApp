@@ -9,6 +9,7 @@ import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from '../../utils/colors';
 import {wizard} from '../../utils/constants';
 import {ListItem} from '../../types/CommonTypes';
+import {fitnessWorkoutsSchema} from '../../utils/yup/yupWorkoutsSchema';
 import * as Yup from 'yup';
 
 import globalStyle from '../../assets/styles/globalStyle';
@@ -25,12 +26,6 @@ const Step4 = () => {
   const [fitnessCategoriesWorkout, setFitnessCategoriesWorkout] = useState<
     Array<ListItem>
   >([...fitnessWorkouts]);
-
-  const fitnessWorkoutsSchema = Yup.object().shape({
-    customWorkoutValue: Yup.string()
-      .existingKindOfWorkout(wizard.WORKOUT_ERROR)
-      .required(wizard.WORKOUT_ERROR_REQUIRED),
-  });
 
   useEffect(() => {
     let unselectedItems: Array<ListItem>;
