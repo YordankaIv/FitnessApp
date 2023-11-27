@@ -6,6 +6,7 @@ import RadioGroup from './RadioGroup/RadioGroup';
 import Registration from './Registration/Registration';
 import Step1 from './Step1/Step1';
 import Step2 from './Step2/Step2';
+import StepWrapper from './StepWrapper/StepWrapper';
 import WizardFooter from './WizardFooter/WizardFooter';
 
 export {
@@ -18,4 +19,5 @@ export {
   Step1,
   Step2,
   WizardFooter,
+  StepWrapper,
 };

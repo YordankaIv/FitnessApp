@@ -72,6 +72,11 @@ const globalStyle = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
+  input: {
+    backgroundColor: Colors.lightPink,
+    borderRadius: horizontalScale(25),
+    paddingHorizontal: horizontalScale(10),
+  },
 });
 
 export default globalStyle;

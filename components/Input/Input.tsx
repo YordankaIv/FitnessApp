@@ -13,6 +13,7 @@ const Input: React.FC<InputProps> = ({
   onChangeText,
   keyboardType = 'default',
   secureTextEntry = false,
+  onInputBlur,
 }) => {
   const [value, setValue] = useState('');
 
@@ -39,6 +40,7 @@ const Input: React.FC<InputProps> = ({
         ]}
         returnKeyType={returnKeyType}
         value={inputValue ?? value}
+        onBlur={() => onInputBlur?.(value)}
         onChangeText={val => {
           setValue(val);
           onChangeText && onChangeText(val);

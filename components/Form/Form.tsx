@@ -48,7 +48,7 @@ const Form: React.FC<{
           <Controller
             control={control}
             render={({field: {onChange, value}}) => (
-              <View style={style.field}>
+              <View style={globalStyle.input}>
                 <Input
                   placeholder={field.placeholder}
                   onChangeText={val => onChangeValue(val, field, onChange)}

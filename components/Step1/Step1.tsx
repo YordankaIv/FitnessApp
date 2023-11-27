@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, KeyboardTypeOptions, Text, View} from 'react-native';
+import {KeyboardTypeOptions, View} from 'react-native';
 import {useWizard} from 'react-use-wizard';
 import {ButtonType, Data} from '../../types/CommonTypes';
 import {auth, wizard} from '../../utils/constants';
@@ -59,29 +59,9 @@ const Step1 = () => {
 
   return (
     <View style={globalStyle.flex}>
-      <View>
-        <Image source={require('../../assets/images/wizard_girl.png')} />
-        <View style={globalStyle.wizardHeader}>
-          <Text
-            style={[
-              globalStyle.FontPlayfairDisplay,
-              globalStyle.XLSize,
-              globalStyle.bolderWeight,
-              globalStyle.header,
-            ]}>
-            {wizard.ABOUT_YOU}
-          </Text>
-        </View>
-      </View>
-      <View style={globalStyle.flex}>
-        {wizardData && (
-          <Form
-            fields={userFields}
-            buttons={userButtons}
-            formData={wizardData}
-          />
-        )}
-      </View>
+      {wizardData && (
+        <Form fields={userFields} buttons={userButtons} formData={wizardData} />
+      )}
     </View>
   );
 };

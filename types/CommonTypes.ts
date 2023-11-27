@@ -28,4 +28,5 @@ export type InputProps = {
   onChangeText?: (val: string) => void;
   keyboardType?: KeyboardTypeOptions;
   secureTextEntry?: boolean;
+  onInputBlur?: (val: string) => void;
 };
