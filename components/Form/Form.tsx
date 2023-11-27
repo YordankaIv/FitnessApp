@@ -8,8 +8,8 @@ import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const Form: React.FC<{
-  fields: FormField[];
-  buttons: FormButton[];
+  fields: Array<FormField>;
+  buttons: Array<FormButton>;
   formData?: {[key: string]: string | number};
 }> = ({fields, buttons, formData}) => {
   const {

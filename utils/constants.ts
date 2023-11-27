@@ -2,14 +2,22 @@ const wizard = {
   NEXT: 'Next',
   BACK: 'Back',
   SAVE: 'Save',
+  FINISH: 'Finish',
   GENDER: 'Gender',
   AGE: 'Age',
-  WEIGHT: 'Weight (kg)',
-  HEIGHT: 'Height (cm)',
+  WEIGHT_LABEL: 'Weight (kg)',
+  HEIGHT_LABEL: 'Height (cm)',
+  WEIGHT: 'weight',
+  HEIGHT: 'height',
+  LEVEL: 'Level',
+  GOAL: 'Goal',
+  WORKOUTS_LABEL: 'Fitness workout',
   ABOUT_YOU: 'What are your body measurements?',
   FITNESS_LEVEL: 'What is your level of fitness?',
   FITNESS_GOAL: 'What is your primary fitness goal?',
   FITNESS_WORKOUTS: 'What is your kind of fitness workouts?',
+  SUMMARY: 'Did I got it correct?',
+  FINAL: "Let's save your data",
   BEGINNER: 'Beginner',
   INTERMEDIATE: 'Intermediate',
   ADVANCED: 'Advanced',
@@ -17,11 +25,17 @@ const wizard = {
   BUILD_STRENGTH: 'Build strength',
   STAY_FIT: 'Stay fit',
   FAT_BURNING: 'Fat burning',
-  WORKOUTS_PLACEHOLDER: 'Select workouts',
+  WORKOUTS: 'workouts',
   REGULAR_TRAINING: 'Regular training',
-  USERS_PATH: 'users',
+  WORKOUT_ERROR: 'There is already an existing one',
+  WORKOUT_ERROR_REQUIRED: 'Workout field cant be empty',
   DEFAULT_WIZARD_INDEX: 0,
+  NONE_INDEX: -1,
   WORKOUT_INPUT_PLACEHOLDER: 'Enter your kind of workouts...',
+};
+
+const paths = {
+  USERS_PATH: 'users',
 };
 
 const intro = {
@@ -48,4 +62,4 @@ const auth = {
   REGISTRATION_SUCCESS: 'You have successfully registered!',
 };
 
-export {intro, errors, auth, wizard};
+export {intro, errors, auth, wizard, paths};

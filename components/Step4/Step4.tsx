@@ -8,28 +8,40 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from '../../utils/colors';
 import {wizard} from '../../utils/constants';
+import {ListItem} from '../../types/CommonTypes';
+import * as Yup from 'yup';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
 const Step4 = () => {
+  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState<{customWorkoutValue: string}>({
+    customWorkoutValue: '',
+  });
   const dispatch = useDispatch();
   const [customWorkoutValue, setCustomWorkoutValue] = useState('');
   const wizardData = useSelector(selectWizard);
   const [fitnessCategoriesWorkout, setFitnessCategoriesWorkout] = useState<
-    Array<{label: string; checked: boolean}>
+    Array<ListItem>
   >([...fitnessWorkouts]);
 
+  const fitnessWorkoutsSchema = Yup.object().shape({
+    customWorkoutValue: Yup.string()
+      .existingKindOfWorkout(wizard.WORKOUT_ERROR)
+      .required(wizard.WORKOUT_ERROR_REQUIRED),
+  });
+
   useEffect(() => {
-    let unselectedItems: Array<{label: string; checked: boolean}>;
+    let unselectedItems: Array<ListItem>;
 
     if (wizardData.workouts.length) {
-      unselectedItems = fitnessCategoriesWorkout.filter(
-        category =>
-          wizardData.workouts.findIndex(
-            workout => workout.label === category.label,
-          ) === -1,
-      );
+      const filterUnselectedItems = (category: {label: string}) =>
+        wizardData.workouts.findIndex(
+          workout => workout.label === category.label,
+        ) === wizard.NONE_INDEX;
+
+      unselectedItems = fitnessCategoriesWorkout.filter(filterUnselectedItems);
     } else {
       unselectedItems = [...fitnessWorkouts];
     }
@@ -37,14 +49,15 @@ const Step4 = () => {
     setFitnessCategoriesWorkout([...wizardData.workouts, ...unselectedItems]);
   }, []);
 
-  const onBlurFitnessInput = (value: string) => {
-    if (
-      value &&
-      !fitnessCategoriesWorkout.filter(
-        workout =>
-          workout.label.toLocaleLowerCase() === value.toLocaleLowerCase(),
-      ).length
-    ) {
+  const onBlurFitnessInput = async (value: string) => {
+    try {
+      await fitnessWorkoutsSchema.validate(
+        {customWorkoutValue: value},
+        {abortEarly: false},
+      );
+      setErrors({customWorkoutValue: ''});
+      setSuccess(true);
+
       setFitnessCategoriesWorkout([
         {label: value, checked: true},
         ...fitnessCategoriesWorkout,
@@ -55,10 +68,21 @@ const Step4 = () => {
           workouts: [...wizardData.workouts, {label: value, checked: true}],
         }),
       );
+    } catch (error) {
+      setSuccess(false);
+
+      if (error instanceof Yup.ValidationError) {
+        const yupErrors = {customWorkoutValue: ''};
+        error.inner.forEach(innerError => {
+          yupErrors[innerError.path] = innerError.message;
+        });
+
+        setErrors(yupErrors);
+      }
     }
   };
 
-  const onPressWorkoutItem = (workout: {label: string; checked: boolean}) => {
+  const onPressWorkoutItem = (workout: ListItem) => {
     const changedCategory = {label: workout.label, checked: !workout.checked};
     const changedWorkouts = fitnessCategoriesWorkout.map(category =>
       category.label === workout.label ? changedCategory : category,
@@ -83,6 +107,9 @@ const Step4 = () => {
           inputValue={customWorkoutValue}
         />
       </View>
+      {errors.customWorkoutValue && (
+        <Text style={globalStyle.error}>{errors.customWorkoutValue}</Text>
+      )}
       <View style={style.workoutListContainer}>
         <ScrollView>
           {fitnessCategoriesWorkout.map((workout, index) => (
