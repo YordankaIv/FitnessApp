@@ -7,13 +7,16 @@ import {wizard} from '../../utils/constants';
 import style from './style';
 
 const WizardFooter: React.FC = () => {
-  const {isFirstStep, previousStep} = useWizard();
+  const {isFirstStep, isLastStep, previousStep, nextStep} = useWizard();
 
   return (
     <View style={style.headerContainer}>
       <View style={style.buttonContainer}>
         {!isFirstStep && (
           <Button title={wizard.BACK} onPress={() => previousStep()} />
+        )}
+        {!isFirstStep && !isLastStep && (
+          <Button title={wizard.NEXT} onPress={() => nextStep()} />
         )}
       </View>
     </View>

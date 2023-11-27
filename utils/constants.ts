@@ -21,6 +21,7 @@ const wizard = {
   REGULAR_TRAINING: 'Regular training',
   USERS_PATH: 'users',
   DEFAULT_WIZARD_INDEX: 0,
+  WORKOUT_INPUT_PLACEHOLDER: 'Enter your kind of workouts...',
 };
 
 const intro = {
