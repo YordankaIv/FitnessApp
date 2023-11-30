@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Image, SafeAreaView, ScrollView} from 'react-native';
 import {Wizard} from 'react-use-wizard';
 import {
@@ -12,12 +12,12 @@ import {
   WizardFooter,
 } from '../../components';
 import {wizard} from '../../utils/constants';
-import {keyboardListeners} from '../../utils/utils';
+import {useKeyboardListeners} from '../../utils/hooks';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
 const FitnessWizard: React.FC = () => {
-  const [status, setStatus] = useState(false);
+  const isKeyboardVisible = useKeyboardListeners();
 
   const wizardSteps = [
     {component: Step1, header: wizard.ABOUT_YOU},
@@ -28,16 +28,9 @@ const FitnessWizard: React.FC = () => {
     {component: Step6, header: wizard.FINAL},
   ];
 
-  useEffect(() => {
-    keyboardListeners(
-      () => setStatus(true),
-      () => setStatus(false),
-    );
-  }, []);
-
   return (
     <SafeAreaView style={globalStyle.flex}>
-      {!status && (
+      {!isKeyboardVisible && (
         <Image
           style={globalStyle.imageBottom}
           source={require('../../assets/images/ellipse.png')}

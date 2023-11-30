@@ -8,42 +8,41 @@ import {fitnessWizardSummary} from '../../utils/fitnessConstants';
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
-const Step5 = () => {
+const Step5: React.FC = () => {
   const wizardData = useSelector(selectWizard);
 
   return (
     <View style={style.summaryContainer}>
-      <View style={[style.accountDetails, style.summaryBlock]}>
-        <View style={globalStyle.marginRight20}>
-          {fitnessWizardSummary.map((summary, index) => (
-            <Text
-              key={index + summary.label}
-              style={[
-                globalStyle.FontPlayfairDisplay,
-                globalStyle.MSize,
-                globalStyle.bolderWeight,
-                style.summaryText,
-              ]}>
-              {summary.label}
-            </Text>
-          ))}
-        </View>
-
-        <View>
-          {fitnessWizardSummary.map((summary, index) => (
-            <Text
-              key={index + summary.name}
-              style={[
-                globalStyle.FontPlayfairDisplay,
-                globalStyle.MSize,
-                style.summaryText,
-              ]}>
-              {wizardData[summary.name]}
-            </Text>
-          ))}
-        </View>
+      <View style={style.summaryBlock}>
+        {fitnessWizardSummary.map((summary, index) => (
+          <View style={style.accountDetails}>
+            <View style={globalStyle.MMarginRight}>
+              <Text
+                key={index + summary.label}
+                style={[
+                  globalStyle.FontPlayfairDisplay,
+                  globalStyle.MSize,
+                  globalStyle.bolderWeight,
+                  style.summaryText,
+                ]}>
+                {summary.label}
+              </Text>
+            </View>
+            <View>
+              <Text
+                key={index + summary.name}
+                style={[
+                  globalStyle.FontPlayfairDisplay,
+                  globalStyle.MSize,
+                  style.summaryText,
+                ]}>
+                {wizardData[summary.name]}
+              </Text>
+            </View>
+          </View>
+        ))}
       </View>
-      <View style={[globalStyle.marginTop30, style.summaryBlock]}>
+      <View style={[globalStyle.LMarginTop, style.summaryBlock]}>
         <Text
           style={[
             globalStyle.FontPlayfairDisplay,

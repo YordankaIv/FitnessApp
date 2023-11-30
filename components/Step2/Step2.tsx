@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-const Step2 = () => {
+const Step2: React.FC = () => {
   const dispatch = useDispatch();
   const wizardData = useSelector(selectWizard);
 
@@ -22,7 +22,7 @@ const Step2 = () => {
   };
 
   return (
-    <View style={globalStyle.marginTop30}>
+    <View style={globalStyle.LMarginTop}>
       <RadioGroup
         data={fitnessLevels}
         onSelect={onSelectOption}

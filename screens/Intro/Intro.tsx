@@ -29,7 +29,7 @@ const Intro: React.FC = () => {
           contentContainerStyle={globalStyle.pageContainer}>
           <View style={[globalStyle.flex, style.container]}>
             <View style={globalStyle.image}>
-              <View style={globalStyle.marginBottom25}>
+              <View style={globalStyle.LMarginBottom}>
                 <Text
                   style={[
                     globalStyle.FontPlayfairDisplay,
