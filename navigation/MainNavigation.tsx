@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
-import {FitnessWizard, Intro, Account} from '../screens';
+import {FitnessWizard, Intro, Account, Dashboard} from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +22,7 @@ const Authenticated = () => {
       initialRouteName={Routes.FitnessWizard}
       screenOptions={{header: () => null, headerShown: false}}>
       <Stack.Screen name={Routes.FitnessWizard} component={FitnessWizard} />
+      <Stack.Screen name={Routes.Dashboard} component={Dashboard} />
     </Stack.Navigator>
   );
 };

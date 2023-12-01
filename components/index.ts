@@ -2,6 +2,7 @@ import Button from './Button/Button';
 import Form from './Form/Form';
 import Input from './Input/Input';
 import Login from './Login/Login';
+import Profile from './Profile/Profile';
 import RadioGroup from './RadioGroup/RadioGroup';
 import Registration from './Registration/Registration';
 import Step1 from './Step1/Step1';
@@ -28,4 +29,5 @@ export {
   Step6,
   WizardFooter,
   StepWrapper,
+  Profile,
 };

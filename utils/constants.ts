@@ -36,6 +36,13 @@ const wizard = {
 
 const paths = {
   USERS_PATH: 'users',
+  WORKOUTS_PATH: 'workouts',
+};
+
+const tabs = {
+  PROFILE: 'Profile',
+  EXERCISES: 'Exercises',
+  WORKOUTS: 'Workouts',
 };
 
 const intro = {
@@ -62,4 +69,4 @@ const auth = {
   REGISTRATION_SUCCESS: 'You have successfully registered!',
 };
 
-export {intro, errors, auth, wizard, paths};
+export {intro, errors, auth, wizard, paths, tabs};

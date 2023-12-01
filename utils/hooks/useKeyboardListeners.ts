@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import {Keyboard, Platform} from 'react-native';
+import {HookBooleanReturnType} from '../../types/CommonTypes';
 
-const useKeyboardListeners: () => boolean = () => {
+const useKeyboardListeners: HookBooleanReturnType = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

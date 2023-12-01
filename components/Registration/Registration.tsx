@@ -3,7 +3,7 @@ import {KeyboardTypeOptions, Text, View} from 'react-native';
 import Form from '../Form/Form';
 import {createUser, onCreateUserError} from '../../api/user';
 import {auth} from '../../utils/constants';
-import {ButtonType, Data} from '../../types/CommonTypes';
+import {ButtonType, StringObject} from '../../types/CommonTypes';
 import {useNavigation} from '@react-navigation/native';
 import {useMutation} from 'react-query';
 
@@ -66,11 +66,11 @@ const Registration: React.FC = () => {
     {
       title: auth.SIGN_UP,
       type,
-      onPress: (data?: Data) => onPressSignUp(data),
+      onPress: (data?: StringObject) => onPressSignUp(data),
     },
   ];
 
-  const onPressSignUp = (data?: Data) => {
+  const onPressSignUp = (data?: StringObject) => {
     if (data) {
       mutateSignUp({
         fullName: data.fullName,

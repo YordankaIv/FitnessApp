@@ -11,12 +11,13 @@ import {Button} from '../../components';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../navigation/Routes';
 import {intro, wizard} from '../../utils/constants';
+import {Navigation} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const Intro: React.FC = () => {
-  const navigation = useNavigation<{navigate: (props: string) => void}>();
+  const navigation = useNavigation<Navigation>();
 
   return (
     <SafeAreaView style={[globalStyle.flex, style.loginContainer]}>
