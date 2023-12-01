@@ -7,7 +7,8 @@ const style = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: verticalScale(-23),
   },
 });

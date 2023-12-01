@@ -1,46 +1,36 @@
-import React, {useEffect, useState} from 'react';
-import {Image, Keyboard, SafeAreaView, ScrollView} from 'react-native';
+import React from 'react';
+import {Image, SafeAreaView, ScrollView} from 'react-native';
 import {Wizard} from 'react-use-wizard';
 import {
   Step1,
   Step2,
   Step3,
   Step4,
+  Step5,
+  Step6,
   StepWrapper,
   WizardFooter,
 } from '../../components';
 import {wizard} from '../../utils/constants';
+import {useKeyboardListeners} from '../../utils/hooks';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
 const FitnessWizard: React.FC = () => {
-  const [status, setStatus] = useState(false);
+  const isKeyboardVisible = useKeyboardListeners();
 
   const wizardSteps = [
     {component: Step1, header: wizard.ABOUT_YOU},
     {component: Step2, header: wizard.FITNESS_LEVEL},
     {component: Step3, header: wizard.FITNESS_GOAL},
     {component: Step4, header: wizard.FITNESS_WORKOUTS},
+    {component: Step5, header: wizard.SUMMARY},
+    {component: Step6, header: wizard.FINAL},
   ];
-
-  useEffect(() => {
-    const show = Keyboard.addListener('keyboardDidShow', () => {
-      setStatus(true);
-    });
-
-    const hide = Keyboard.addListener('keyboardDidHide', () => {
-      setStatus(false);
-    });
-
-    return () => {
-      show.remove();
-      hide.remove();
-    };
-  }, []);
 
   return (
     <SafeAreaView style={globalStyle.flex}>
-      {!status && (
+      {!isKeyboardVisible && (
         <Image
           style={globalStyle.imageBottom}
           source={require('../../assets/images/ellipse.png')}

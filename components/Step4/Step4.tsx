@@ -15,7 +15,7 @@ import * as Yup from 'yup';
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
-const Step4 = () => {
+const Step4: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState<{customWorkoutValue: string}>({
     customWorkoutValue: '',
@@ -92,7 +92,7 @@ const Step4 = () => {
   };
 
   return (
-    <View style={[globalStyle.marginTop30, globalStyle.flex]}>
+    <View style={[globalStyle.LMarginTop, globalStyle.flex]}>
       <View style={globalStyle.input}>
         <Input
           placeholder={wizard.WORKOUT_INPUT_PLACEHOLDER}

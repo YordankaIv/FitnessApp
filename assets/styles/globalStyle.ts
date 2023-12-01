@@ -46,6 +46,9 @@ const globalStyle = StyleSheet.create({
   bolderWeight: {
     fontWeight: '700',
   },
+  XXLSize: {
+    fontSize: scaleFontSize(40),
+  },
   XLSize: {
     fontSize: scaleFontSize(25),
   },
@@ -61,11 +64,14 @@ const globalStyle = StyleSheet.create({
   FontPlayfairDisplay: {
     fontFamily: 'PlayfairDisplay',
   },
-  marginBottom25: {
+  LMarginBottom: {
     marginBottom: verticalScale(25),
   },
-  marginTop30: {
+  LMarginTop: {
     marginTop: verticalScale(30),
+  },
+  MMarginRight: {
+    marginRight: horizontalScale(20),
   },
   imageBottom: {
     position: 'absolute',
