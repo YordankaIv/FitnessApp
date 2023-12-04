@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import {KeyboardTypeOptions, View} from 'react-native';
 import {useWizard} from 'react-use-wizard';
-import {ButtonType, StringObject} from '../../types/CommonTypes';
+import {
+  ButtonType,
+  Fields,
+  FormField,
+  Step1Form,
+} from '../../types/CommonTypes';
 import {auth, wizard} from '../../utils/constants';
 import {Form} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
@@ -23,33 +28,33 @@ const Step1: React.FC = () => {
 
   const type: ButtonType = 'submit';
   const keyboardType: KeyboardTypeOptions = 'numeric';
-  const userFields = [
+  const userFields: Array<FormField<Step1Form>> = [
     {
       label: auth.NAME_LABEL,
-      name: auth.NAME.toLowerCase(),
+      name: Fields.name,
       required: false,
     },
     {
       label: wizard.AGE,
-      name: wizard.AGE.toLowerCase(),
+      name: Fields.age,
       required: false,
       keyboardType,
     },
     {
       label: wizard.WEIGHT_LABEL,
-      name: wizard.WEIGHT,
+      name: Fields.weight,
       required: false,
       keyboardType,
     },
     {
       label: wizard.HEIGHT_LABEL,
-      name: wizard.HEIGHT,
+      name: Fields.height,
       required: false,
       keyboardType,
     },
   ];
 
-  const onPressNext = async (data?: StringObject) => {
+  const onPressNext = async (data?: Step1Form) => {
     if (data) {
       dispatch(updateUserData(data));
       nextStep();
@@ -60,14 +65,18 @@ const Step1: React.FC = () => {
     {
       title: wizard.NEXT,
       type,
-      onPress: (data?: StringObject) => onPressNext(data),
+      onPress: (data?: Step1Form) => onPressNext(data),
     },
   ];
 
   return (
     <View style={globalStyle.flex}>
       {wizardData && (
-        <Form fields={userFields} buttons={userButtons} formData={userData} />
+        <Form<Step1Form>
+          fields={userFields}
+          buttons={userButtons}
+          formData={userData}
+        />
       )}
     </View>
   );

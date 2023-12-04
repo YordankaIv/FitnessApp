@@ -1,30 +1,45 @@
 import {KeyboardTypeOptions, ReturnKeyTypeOptions} from 'react-native';
 import store from '../redux/store';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
+import {FieldPath, FieldValues} from 'react-hook-form';
 
-export type StringObject = {[key: string]: string};
+export enum Fields {
+  email = 'email',
+  password = 'password',
+  fullName = 'fullName',
+  name = 'name',
+  age = 'age',
+  weight = 'weight',
+  height = 'height',
+}
+
+export type StringObject = Record<string, string>;
 export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
 export type IconType = {color: string; size: number; icon: IconProp};
-export type Navigation = {navigate: (props: string) => void};
+export type ErrorType = {code: string};
+export type Navigation = {
+  navigate: (props: string) => void;
+  jumpTo: (props: string) => void;
+};
 
 export type ListItem = {label: string; checked: boolean};
 export type Workout = {label: string; name: string};
 
-export type FormField = {
+export type FormField<T extends FieldValues> = {
   label: string;
-  name: string;
+  name: FieldPath<T>;
   required: boolean;
   placeholder?: string;
-  keyboardType?: KeyboardTypeOptions | undefined;
-  secureTextEntry?: boolean | undefined;
+  keyboardType?: KeyboardTypeOptions;
+  secureTextEntry?: boolean;
 };
 
-export type FormButton = {
+export type FormButton<T> = {
   title: string;
   type?: ButtonType;
-  onPress: (data?: StringObject) => void;
+  onPress: (data?: T) => void;
 };
 
 export type InputProps = {
@@ -37,3 +52,27 @@ export type InputProps = {
   secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
 };
+
+export interface FormProps<T extends FieldValues> {
+  fields: Array<FormField<T>>;
+  buttons: Array<FormButton<T>>;
+  formData?: T;
+}
+
+export interface LoginForm {
+  email: string;
+  password: string;
+}
+
+export interface Step1Form {
+  name: string;
+  age: string;
+  weight: string;
+  height: string;
+}
+
+export interface RegistrationForm {
+  fullName: string;
+  email: string;
+  password: string;
+}

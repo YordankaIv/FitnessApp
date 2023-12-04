@@ -3,7 +3,14 @@ import {KeyboardTypeOptions, Text, View} from 'react-native';
 import Form from '../Form/Form';
 import {createUser, onCreateUserError} from '../../api/user';
 import {auth} from '../../utils/constants';
-import {ButtonType, StringObject} from '../../types/CommonTypes';
+import {
+  ButtonType,
+  ErrorType,
+  Fields,
+  FormField,
+  Navigation,
+  RegistrationForm,
+} from '../../types/CommonTypes';
 import {useNavigation} from '@react-navigation/native';
 import {useMutation} from 'react-query';
 
@@ -11,19 +18,13 @@ import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
 const Registration: React.FC = () => {
-  const navigation = useNavigation<{
-    jumpTo: (props: string) => void;
-  }>();
+  const navigation = useNavigation<Navigation>();
 
   const {mutate: mutateSignUp} = useMutation({
-    mutationFn: async (data: {
-      fullName: string;
-      email: string;
-      password: string;
-    }) => {
+    mutationFn: async (data: RegistrationForm) => {
       return await createUser(data.fullName, data.email, data.password);
     },
-    onError: async (error: {code: string}) => {
+    onError: async (error: ErrorType) => {
       let userError = onCreateUserError(error);
       setError(userError);
     },
@@ -39,24 +40,24 @@ const Registration: React.FC = () => {
 
   const type: ButtonType = 'submit';
   const keyboardType: KeyboardTypeOptions = 'email-address';
-  const registrationFields = [
+  const registrationFields: Array<FormField<RegistrationForm>> = [
     {
       label: auth.NAME_LABEL,
       placeholder: auth.NAME_PLACEHOLDER,
-      name: auth.NAME,
+      name: Fields.fullName,
       required: true,
     },
     {
       label: auth.EMAIL_LABEL,
       placeholder: auth.EMAIL_PLACEHOLDER,
-      name: auth.EMAIL_LABEL.toLowerCase(),
+      name: Fields.email,
       required: true,
       keyboardType,
     },
     {
       label: auth.PASSWORD_LABEL,
       placeholder: auth.PASSWORD_PLACEHOLDER,
-      name: auth.PASSWORD_LABEL.toLowerCase(),
+      name: Fields.password,
       required: true,
       secureTextEntry: true,
     },
@@ -66,11 +67,11 @@ const Registration: React.FC = () => {
     {
       title: auth.SIGN_UP,
       type,
-      onPress: (data?: StringObject) => onPressSignUp(data),
+      onPress: (data?: RegistrationForm) => onPressSignUp(data),
     },
   ];
 
-  const onPressSignUp = (data?: StringObject) => {
+  const onPressSignUp = (data?: RegistrationForm) => {
     if (data) {
       mutateSignUp({
         fullName: data.fullName,
@@ -84,7 +85,10 @@ const Registration: React.FC = () => {
     <View style={[globalStyle.flex, style.container]}>
       {error.length > 0 && <Text style={globalStyle.error}>{error}</Text>}
       {success.length > 0 && <Text style={globalStyle.success}>{success}</Text>}
-      <Form fields={registrationFields} buttons={registrationButtons} />
+      <Form<RegistrationForm>
+        fields={registrationFields}
+        buttons={registrationButtons}
+      />
     </View>
   );
 };

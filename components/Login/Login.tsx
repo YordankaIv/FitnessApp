@@ -3,7 +3,13 @@ import {KeyboardTypeOptions, Text, View} from 'react-native';
 import {Form} from '../../components';
 import {auth} from '../../utils/constants';
 import {loginUser} from '../../api/user';
-import {ButtonType, Navigation, StringObject} from '../../types/CommonTypes';
+import {
+  ButtonType,
+  Fields,
+  FormField,
+  LoginForm,
+  Navigation,
+} from '../../types/CommonTypes';
 import {useMutation} from 'react-query';
 import {useDispatch} from 'react-redux';
 import {logIn} from '../../redux/reducers/User';
@@ -18,7 +24,7 @@ const Login: React.FC = () => {
   const navigation = useNavigation<Navigation>();
 
   const {mutate: mutateSignIn, error} = useMutation({
-    mutationFn: async (data: {email: string; password: string}) => {
+    mutationFn: async (data: LoginForm) => {
       return await loginUser(data.email, data.password);
     },
     onSuccess: (user: {
@@ -36,24 +42,24 @@ const Login: React.FC = () => {
 
   const type: ButtonType = 'submit';
   const keyboardType: KeyboardTypeOptions = 'email-address';
-  const loginFields = [
+  const loginFields: Array<FormField<LoginForm>> = [
     {
       label: auth.EMAIL_LABEL,
       placeholder: auth.EMAIL_PLACEHOLDER,
-      name: auth.EMAIL_LABEL.toLowerCase(),
+      name: Fields.email,
       required: true,
       keyboardType,
     },
     {
       label: auth.PASSWORD_LABEL,
       placeholder: auth.PASSWORD_PLACEHOLDER,
-      name: auth.PASSWORD_LABEL.toLowerCase(),
+      name: Fields.password,
       required: true,
       secureTextEntry: true,
     },
   ];
 
-  const onPressSignIn = async (data?: StringObject) => {
+  const onPressSignIn = async (data?: LoginForm) => {
     if (data) {
       mutateSignIn({email: data.email, password: data.password});
     }
@@ -63,7 +69,7 @@ const Login: React.FC = () => {
     {
       title: auth.SIGN_IN,
       type,
-      onPress: (data?: StringObject) => onPressSignIn(data),
+      onPress: (data?: LoginForm) => onPressSignIn(data),
     },
   ];
 
@@ -72,7 +78,7 @@ const Login: React.FC = () => {
       {error instanceof Error && (
         <Text style={globalStyle.error}>{error.message}</Text>
       )}
-      <Form fields={loginFields} buttons={loginButtons} />
+      <Form<LoginForm> fields={loginFields} buttons={loginButtons} />
     </View>
   );
 };
