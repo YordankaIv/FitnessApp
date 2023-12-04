@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {KeyboardTypeOptions, View} from 'react-native';
 import {useWizard} from 'react-use-wizard';
-import {ButtonType, Data} from '../../types/CommonTypes';
+import {ButtonType, StringObject} from '../../types/CommonTypes';
 import {auth, wizard} from '../../utils/constants';
 import {Form} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,10 +9,17 @@ import {selectWizard, updateUserData} from '../../redux/reducers/WizardData';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-const Step1 = () => {
+const Step1: React.FC = () => {
   const dispatch = useDispatch();
   const {nextStep} = useWizard();
   const wizardData = useSelector(selectWizard);
+
+  const [userData, setUserData] = useState({
+    name: wizardData.name,
+    age: wizardData.age,
+    weight: wizardData.weight,
+    height: wizardData.height,
+  });
 
   const type: ButtonType = 'submit';
   const keyboardType: KeyboardTypeOptions = 'numeric';
@@ -29,20 +36,20 @@ const Step1 = () => {
       keyboardType,
     },
     {
-      label: wizard.WEIGHT,
-      name: wizard.WEIGHT.toLowerCase(),
+      label: wizard.WEIGHT_LABEL,
+      name: wizard.WEIGHT,
       required: false,
       keyboardType,
     },
     {
-      label: wizard.HEIGHT,
-      name: wizard.HEIGHT.toLowerCase(),
+      label: wizard.HEIGHT_LABEL,
+      name: wizard.HEIGHT,
       required: false,
       keyboardType,
     },
   ];
 
-  const onPressNext = async (data?: Data) => {
+  const onPressNext = async (data?: StringObject) => {
     if (data) {
       dispatch(updateUserData(data));
       nextStep();
@@ -53,14 +60,14 @@ const Step1 = () => {
     {
       title: wizard.NEXT,
       type,
-      onPress: (data?: Data) => onPressNext(data),
+      onPress: (data?: StringObject) => onPressNext(data),
     },
   ];
 
   return (
     <View style={globalStyle.flex}>
       {wizardData && (
-        <Form fields={userFields} buttons={userButtons} formData={wizardData} />
+        <Form fields={userFields} buttons={userButtons} formData={userData} />
       )}
     </View>
   );

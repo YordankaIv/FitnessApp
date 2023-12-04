@@ -5,15 +5,17 @@ import {selectWizard} from '../../redux/reducers/WizardData';
 import {useSelector} from 'react-redux';
 import Button from '../Button/Button';
 import {useMutation} from 'react-query';
-import {saveData} from '../../utils/firebaseUtils';
-import {firebase} from '@react-native-firebase/auth';
+import {getUserId, saveData} from '../../utils/firebaseUtils';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../navigation/Routes';
+import {Navigation, Workout} from '../../types/CommonTypes';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-const Step6 = () => {
+const Step6: React.FC = () => {
+  const navigation = useNavigation<Navigation>();
   const wizardData = useSelector(selectWizard);
-  const user = firebase.auth().currentUser;
-  const uid = user ? user.uid : '';
+  const uid = getUserId();
 
   const {mutate: mutateSaveFitnessData} = useMutation({
     mutationFn: async (data: {
@@ -23,7 +25,7 @@ const Step6 = () => {
       height: string;
       level: string;
       goal: string;
-      workouts: Array<{label: string; name: string}>;
+      workouts: Array<Workout>;
     }) => {
       return await saveData(paths.USERS_PATH, uid, data);
     },
@@ -31,10 +33,11 @@ const Step6 = () => {
 
   const onPressFinish = () => {
     mutateSaveFitnessData(wizardData);
+    navigation.navigate(Routes.Dashboard);
   };
 
   return (
-    <View style={globalStyle.marginTop30}>
+    <View style={globalStyle.LMarginTop}>
       <Button title={wizard.FINISH} onPress={onPressFinish} />
     </View>
   );
