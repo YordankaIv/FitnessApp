@@ -24,7 +24,6 @@ const Account: React.FC = () => {
               swipeEnabled: false,
               tabBarStyle: style.tabBar,
               tabBarIndicatorStyle: style.tabBarIndicator,
-              tabBarContentContainerStyle: style.tabBarContentContainer,
             }}
             sceneContainerStyle={style.sceneContainer}>
             <Tab.Screen name={auth.SIGN_IN} component={Login} />

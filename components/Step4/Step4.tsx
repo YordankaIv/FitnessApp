@@ -1,12 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Pressable, ScrollView, Text, View} from 'react-native';
-import {Input} from '../../components';
+import {ScrollView, Text, View} from 'react-native';
+import {Input, Switch} from '../../components';
 import {selectWizard, updateUserData} from '../../redux/reducers/WizardData';
 import {useDispatch, useSelector} from 'react-redux';
 import {fitnessWorkouts} from '../../utils/fitnessConstants';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import {Colors} from '../../utils/colors';
 import {wizard} from '../../utils/constants';
 import {ListItem} from '../../types/CommonTypes';
 import {fitnessWorkoutsSchema} from '../../utils/yup/yupWorkoutsSchema';
@@ -16,7 +13,6 @@ import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
 const Step4: React.FC = () => {
-  const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState<{customWorkoutValue: string}>({
     customWorkoutValue: '',
   });
@@ -25,7 +21,7 @@ const Step4: React.FC = () => {
   const wizardData = useSelector(selectWizard);
   const [fitnessCategoriesWorkout, setFitnessCategoriesWorkout] = useState<
     Array<ListItem>
-  >([...fitnessWorkouts]);
+  >([]);
 
   useEffect(() => {
     let unselectedItems: Array<ListItem>;
@@ -36,7 +32,7 @@ const Step4: React.FC = () => {
           workout => workout.label === category.label,
         ) === wizard.NONE_INDEX;
 
-      unselectedItems = fitnessCategoriesWorkout.filter(filterUnselectedItems);
+      unselectedItems = fitnessWorkouts.filter(filterUnselectedItems);
     } else {
       unselectedItems = [...fitnessWorkouts];
     }
@@ -51,7 +47,6 @@ const Step4: React.FC = () => {
         {abortEarly: false},
       );
       setErrors({customWorkoutValue: ''});
-      setSuccess(true);
 
       setFitnessCategoriesWorkout([
         {label: value, checked: true},
@@ -64,8 +59,6 @@ const Step4: React.FC = () => {
         }),
       );
     } catch (error) {
-      setSuccess(false);
-
       if (error instanceof Yup.ValidationError) {
         const yupErrors = {customWorkoutValue: ''};
         error.inner.forEach(innerError => {
@@ -93,7 +86,7 @@ const Step4: React.FC = () => {
 
   return (
     <View style={[globalStyle.LMarginTop, globalStyle.flex]}>
-      <View style={globalStyle.input}>
+      <View>
         <Input
           placeholder={wizard.WORKOUT_INPUT_PLACEHOLDER}
           onChangeText={(value: string) => setCustomWorkoutValue(value)}
@@ -106,14 +99,9 @@ const Step4: React.FC = () => {
         <Text style={globalStyle.error}>{errors.customWorkoutValue}</Text>
       )}
       <View style={style.workoutListContainer}>
-        <ScrollView>
+        <ScrollView persistentScrollbar={true} fadingEdgeLength={300}>
           {fitnessCategoriesWorkout.map((workout, index) => (
-            <Pressable
-              key={index}
-              style={style.selectedWorkoutItem}
-              onPress={() => {
-                onPressWorkoutItem(workout);
-              }}>
+            <View key={index} style={style.selectedWorkoutItem}>
               <Text
                 style={[
                   globalStyle.FontPlayfairDisplay,
@@ -123,13 +111,13 @@ const Step4: React.FC = () => {
                 ]}>
                 {workout.label}
               </Text>
-              <Text>{workout.checked}</Text>
-              <FontAwesomeIcon
-                icon={faCheck}
-                size={25}
-                color={workout.checked ? Colors.pink : Colors.gray}
+              <Switch
+                initialState={workout.checked}
+                onPress={() => {
+                  onPressWorkoutItem(workout);
+                }}
               />
-            </Pressable>
+            </View>
           ))}
         </ScrollView>
       </View>

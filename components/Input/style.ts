@@ -6,7 +6,9 @@ const style = StyleSheet.create({
   label: {
     color: Colors.white,
   },
-  input: {
+  focusedInput: {
+    backgroundColor: Colors.white,
+    borderColor: Colors.pink,
     paddingVertical: verticalScale(12),
   },
 });

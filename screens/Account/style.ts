@@ -20,13 +20,7 @@ const style = StyleSheet.create({
     elevation: 0,
   },
   tabBarIndicator: {
-    borderBottomColor: 'white',
-  },
-  tabBarContentContainer: {
-    backgroundColor: 'transparent',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: Colors.white,
   },
   sceneContainer: {
     backgroundColor: 'transparent',

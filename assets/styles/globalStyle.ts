@@ -46,6 +46,9 @@ const globalStyle = StyleSheet.create({
   bolderWeight: {
     fontWeight: '700',
   },
+  XXXLSize: {
+    fontSize: scaleFontSize(48),
+  },
   XXLSize: {
     fontSize: scaleFontSize(40),
   },
@@ -79,9 +82,12 @@ const globalStyle = StyleSheet.create({
     width: '100%',
   },
   input: {
+    borderWidth: 2,
+    borderColor: Colors.lightPink,
     backgroundColor: Colors.lightPink,
     borderRadius: horizontalScale(25),
     paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(12),
   },
 });
 
