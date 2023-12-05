@@ -1,31 +1,31 @@
 import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
-import {Controller, useForm} from 'react-hook-form';
+import {Controller, FieldValues, useForm} from 'react-hook-form';
 import {Button, Input} from '../../components';
-import {FormButton, FormField} from '../../types/CommonTypes';
+import {FormField, FormProps} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
-const Form: React.FC<{
-  fields: Array<FormField>;
-  buttons: Array<FormButton>;
-  formData?: {[key: string]: string | number};
-}> = ({fields, buttons, formData}) => {
+const Form = <T extends FieldValues>({
+  fields,
+  buttons,
+  formData,
+}: FormProps<T>) => {
   const {
     handleSubmit,
     control,
     reset,
     formState: {isValid},
-  } = useForm();
+  } = useForm<T>();
 
   useEffect(() => {
     reset(formData);
-  }, [formData]);
+  }, [formData, reset]);
 
   const onChangeValue = (
     value: string,
-    field: FormField,
+    field: FormField<T>,
     onChange: (event: string) => void,
   ) => {
     const currentVal =
