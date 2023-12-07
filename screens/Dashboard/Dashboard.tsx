@@ -8,7 +8,7 @@ import {
   faRocket,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import {Profile} from '../../components';
+import {ExercisesStackScreen, Profile} from '../../components';
 import {IconType} from '../../types/CommonTypes';
 
 import globalStyle from '../../assets/styles/globalStyle';
@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
   const menuTabs = [
     {name: tabs.PROFILE, component: Profile, icon: faUserCircle},
-    // {name: tabs.EXERCISES, component: Exercises, icon: faRocket},
+    {name: tabs.EXERCISES, component: ExercisesStackScreen, icon: faRocket},
     // {name: tabs.WORKOUTS, component: Profile, icon: faFire},
   ];
 

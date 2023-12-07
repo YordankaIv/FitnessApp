@@ -15,7 +15,7 @@ const Step5: React.FC = () => {
     <View style={style.summaryContainer}>
       <View style={style.summaryBlock}>
         {fitnessWizardSummary.map((summary, index) => (
-          <View style={style.accountDetails}>
+          <View style={style.accountDetails} key={index}>
             <View style={globalStyle.MMarginRight}>
               <Text
                 key={index + summary.label}
