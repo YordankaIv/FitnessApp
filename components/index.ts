@@ -12,6 +12,7 @@ import Step4 from './Step4/Step4';
 import Step5 from './Step5/Step5';
 import Step6 from './Step6/Step6';
 import StepWrapper from './StepWrapper/StepWrapper';
+import Switch from './Switch/Switch';
 import WizardFooter from './WizardFooter/WizardFooter';
 
 export {
@@ -30,4 +31,5 @@ export {
   WizardFooter,
   StepWrapper,
   Profile,
+  Switch,
 };

@@ -48,16 +48,14 @@ const Form = <T extends FieldValues>({
           <Controller
             control={control}
             render={({field: {onChange, value}}) => (
-              <View style={globalStyle.input}>
-                <Input
-                  placeholder={field.placeholder}
-                  onChangeText={val => onChangeValue(val, field, onChange)}
-                  returnKeyType={'next'}
-                  keyboardType={field.keyboardType}
-                  secureTextEntry={field.secureTextEntry}
-                  inputValue={value}
-                />
-              </View>
+              <Input
+                placeholder={field.placeholder}
+                onChangeText={val => onChangeValue(val, field, onChange)}
+                returnKeyType={'next'}
+                keyboardType={field.keyboardType}
+                secureTextEntry={field.secureTextEntry}
+                inputValue={value}
+              />
             )}
             name={field.name}
             rules={{required: field.required}}

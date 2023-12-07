@@ -17,6 +17,7 @@ export type StringObject = Record<string, string>;
 export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
+export type SwitchType = {initialState: boolean; onPress: () => void};
 export type IconType = {color: string; size: number; icon: IconProp};
 export type ErrorType = {code: string};
 export type Navigation = {

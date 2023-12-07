@@ -16,6 +16,12 @@ const Input: React.FC<InputProps> = ({
   onInputBlur,
 }) => {
   const [value, setValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+
+  const onFieldBlur = () => {
+    setIsFocused(false);
+    onInputBlur?.(value);
+  };
 
   return (
     <View>
@@ -34,13 +40,16 @@ const Input: React.FC<InputProps> = ({
         keyboardType={keyboardType}
         placeholder={placeholder}
         style={[
-          style.input,
+          globalStyle.input,
+          globalStyle.bolderWeight,
           globalStyle.FontPlayfairDisplay,
           globalStyle.MSize,
+          isFocused && style.focusedInput,
         ]}
         returnKeyType={returnKeyType}
         value={inputValue ?? value}
-        onBlur={() => onInputBlur?.(value)}
+        onBlur={onFieldBlur}
+        onFocus={() => setIsFocused(true)}
         onChangeText={val => {
           setValue(val);
           onChangeText && onChangeText(val);

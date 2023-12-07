@@ -34,7 +34,7 @@ const Intro: React.FC = () => {
                 <Text
                   style={[
                     globalStyle.FontPlayfairDisplay,
-                    globalStyle.XLSize,
+                    globalStyle.XXXLSize,
                     globalStyle.bolderWeight,
                     globalStyle.header,
                   ]}>
@@ -52,7 +52,7 @@ const Intro: React.FC = () => {
                 </Text>
               </View>
             </View>
-            <View>
+            <View style={style.buttonContainer}>
               <Button
                 title={wizard.NEXT}
                 onPress={() => navigation.navigate(Routes.Account)}

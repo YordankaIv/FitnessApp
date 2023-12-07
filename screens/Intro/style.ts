@@ -10,6 +10,9 @@ const style = StyleSheet.create({
   loginContainer: {
     backgroundColor: Colors.pink,
   },
+  buttonContainer: {
+    width: '90%',
+  },
   registrationButton: {
     alignItems: 'center',
     marginTop: verticalScale(15),
