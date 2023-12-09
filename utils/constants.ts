@@ -69,4 +69,13 @@ const auth = {
   REGISTRATION_SUCCESS: 'You have successfully registered!',
 };
 
-export {intro, errors, auth, wizard, paths, tabs};
+const exercises = {
+  USER_KEY: 'user',
+  EXERCISES_KEY: 'exercises',
+  ADD_EXERCISE: 'Add exercise',
+  LIST: 'Exercises List',
+  CATEGORIES: 'Exercises Categories',
+  NO_EXERCISES_TEXT: 'No exercises yet. Please add your exercises',
+};
+
+export {intro, errors, auth, wizard, paths, tabs, exercises};

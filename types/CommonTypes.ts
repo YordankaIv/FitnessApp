@@ -13,7 +13,7 @@ export enum Fields {
   height = 'height',
 }
 
-export type StringObject = Record<string, string>;
+export type ParamsType = {key: string};
 export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
@@ -21,11 +21,12 @@ export type SwitchType = {initialState: boolean; onPress: () => void};
 export type IconType = {color: string; size: number; icon: IconProp};
 export type ErrorType = {code: string};
 export type Navigation = {
-  navigate: (props: string) => void;
+  navigate: (props: string, params?: ParamsType) => void;
   jumpTo: (props: string) => void;
 };
 
-export type ListItem = {label: string; checked: boolean};
+export type WorkoutListItem = {label: string; checked: boolean; key?: string};
+export type ExerciseListItem = {label: string};
 export type Workout = {label: string; name: string};
 
 export type FormField<T extends FieldValues> = {
@@ -53,6 +54,16 @@ export type InputProps = {
   secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
 };
+
+export interface User {
+  name: string;
+  age: string;
+  goal: string;
+  height: string;
+  weight: string;
+  level: string;
+  workouts: WorkoutListItem[];
+}
 
 export interface FormProps<T extends FieldValues> {
   fields: Array<FormField<T>>;

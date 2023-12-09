@@ -5,7 +5,7 @@ import {selectWizard, updateUserData} from '../../redux/reducers/WizardData';
 import {useDispatch, useSelector} from 'react-redux';
 import {fitnessWorkouts} from '../../utils/fitnessConstants';
 import {wizard} from '../../utils/constants';
-import {ListItem} from '../../types/CommonTypes';
+import {WorkoutListItem} from '../../types/CommonTypes';
 import {fitnessWorkoutsSchema} from '../../utils/yup/yupWorkoutsSchema';
 import * as Yup from 'yup';
 
@@ -20,11 +20,11 @@ const Step4: React.FC = () => {
   const [customWorkoutValue, setCustomWorkoutValue] = useState('');
   const wizardData = useSelector(selectWizard);
   const [fitnessCategoriesWorkout, setFitnessCategoriesWorkout] = useState<
-    Array<ListItem>
+    Array<WorkoutListItem>
   >([]);
 
   useEffect(() => {
-    let unselectedItems: Array<ListItem>;
+    let unselectedItems: Array<WorkoutListItem>;
 
     if (wizardData.workouts.length) {
       const filterUnselectedItems = (category: {label: string}) =>
@@ -70,7 +70,7 @@ const Step4: React.FC = () => {
     }
   };
 
-  const onPressWorkoutItem = (workout: ListItem) => {
+  const onPressWorkoutItem = (workout: WorkoutListItem) => {
     const changedCategory = {label: workout.label, checked: !workout.checked};
     const changedWorkouts = fitnessCategoriesWorkout.map(category =>
       category.label === workout.label ? changedCategory : category,

@@ -1,4 +1,7 @@
 import Button from './Button/Button';
+import Exercises from './Exercises/Exercises';
+import ExercisesList from './ExercisesList/ExercisesList';
+import ExercisesStackScreen from './ExercisesStackScreen/ExercisesStackScreen';
 import Form from './Form/Form';
 import Input from './Input/Input';
 import Login from './Login/Login';
@@ -32,4 +35,7 @@ export {
   StepWrapper,
   Profile,
   Switch,
+  ExercisesStackScreen,
+  ExercisesList,
+  Exercises,
 };
