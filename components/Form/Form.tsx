@@ -55,6 +55,8 @@ const Form = <T extends FieldValues>({
                 keyboardType={field.keyboardType}
                 secureTextEntry={field.secureTextEntry}
                 inputValue={value}
+                multiline={field.multiline}
+                numberOfLines={field.numberOfLines}
               />
             )}
             name={field.name}

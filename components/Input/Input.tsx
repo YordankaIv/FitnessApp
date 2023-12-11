@@ -14,6 +14,8 @@ const Input: React.FC<InputProps> = ({
   keyboardType = 'default',
   secureTextEntry = false,
   onInputBlur,
+  multiline,
+  numberOfLines,
 }) => {
   const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -46,6 +48,8 @@ const Input: React.FC<InputProps> = ({
           globalStyle.MSize,
           isFocused && style.focusedInput,
         ]}
+        multiline={multiline}
+        numberOfLines={numberOfLines}
         returnKeyType={returnKeyType}
         value={inputValue ?? value}
         onBlur={onFieldBlur}

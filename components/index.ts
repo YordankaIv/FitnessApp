@@ -1,4 +1,6 @@
+import ExerciseActions from './ExerciseActions/ExerciseActions';
 import Button from './Button/Button';
+import ExerciseForm from './ExerciseForm/ExerciseForm';
 import Exercises from './Exercises/Exercises';
 import ExercisesList from './ExercisesList/ExercisesList';
 import ExercisesStackScreen from './ExercisesStackScreen/ExercisesStackScreen';
@@ -38,4 +40,6 @@ export {
   ExercisesStackScreen,
   ExercisesList,
   Exercises,
+  ExerciseActions,
+  ExerciseForm,
 };

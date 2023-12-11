@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {Colors} from '../../utils/colors';
-import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
+import {verticalScale} from '../../assets/styles/scaling';
 
 const style = StyleSheet.create({
   formContainer: {

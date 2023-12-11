@@ -11,9 +11,12 @@ export enum Fields {
   age = 'age',
   weight = 'weight',
   height = 'height',
+  duration = 'duration',
+  description = 'description',
+  times = 'times',
 }
 
-export type ParamsType = {key: string};
+export type ParamsType = {workoutKey?: string; exerciseKey?: string};
 export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
@@ -23,10 +26,10 @@ export type ErrorType = {code: string};
 export type Navigation = {
   navigate: (props: string, params?: ParamsType) => void;
   jumpTo: (props: string) => void;
+  goBack: () => void;
 };
 
 export type WorkoutListItem = {label: string; checked: boolean; key?: string};
-export type ExerciseListItem = {label: string};
 export type Workout = {label: string; name: string};
 
 export type FormField<T extends FieldValues> = {
@@ -36,6 +39,8 @@ export type FormField<T extends FieldValues> = {
   placeholder?: string;
   keyboardType?: KeyboardTypeOptions;
   secureTextEntry?: boolean;
+  multiline?: boolean;
+  numberOfLines?: number;
 };
 
 export type FormButton<T> = {
@@ -53,7 +58,15 @@ export type InputProps = {
   keyboardType?: KeyboardTypeOptions;
   secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
+  multiline?: boolean;
+  numberOfLines?: number;
 };
+
+export interface ExerciseFormProps {
+  submitButtonTitle: string;
+  onPressSubmit: (exerciseDetails: ExerciseDetailsForm | undefined) => void;
+  initialExerciseValues?: ExerciseDetailsForm;
+}
 
 export interface User {
   name: string;
@@ -87,4 +100,12 @@ export interface RegistrationForm {
   fullName: string;
   email: string;
   password: string;
+}
+
+export interface ExerciseDetailsForm {
+  id: string;
+  name: string;
+  duration: string;
+  times: string;
+  description: string;
 }
