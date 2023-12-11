@@ -18,8 +18,8 @@ const Step6: React.FC = () => {
   const uid = getUserId();
 
   const {mutate: mutateSaveFitnessData} = useMutation({
-    mutationFn: async (data: User) => {
-      return await saveData(paths.USERS_PATH, uid, data);
+    mutationFn: async (user: User) => {
+      return await saveData(paths.USERS_PATH, uid, user);
     },
   });
 

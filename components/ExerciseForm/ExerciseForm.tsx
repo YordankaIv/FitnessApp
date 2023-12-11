@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyboardTypeOptions, ScrollView, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {exercises} from '../../utils/constants';
 import {
   ButtonType,
@@ -7,6 +7,7 @@ import {
   ExerciseFormProps,
   Fields,
   FormField,
+  KeyboardType,
 } from '../../types/CommonTypes';
 import Form from '../Form/Form';
 
@@ -17,8 +18,6 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   onPressSubmit,
   initialExerciseValues,
 }) => {
-  const type: ButtonType = 'submit';
-  const keyboardType: KeyboardTypeOptions = 'numeric';
   const exerciseFields: Array<FormField<ExerciseDetailsForm>> = [
     {
       label: exercises.EXERCISE_NAME,
@@ -27,13 +26,13 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
     },
     {
       label: exercises.TIMES,
-      keyboardType,
+      keyboardType: KeyboardType.numeric,
       name: Fields.times,
       required: false,
     },
     {
       label: exercises.DURATION,
-      keyboardType,
+      keyboardType: KeyboardType.numeric,
       name: Fields.duration,
       required: true,
     },
@@ -49,7 +48,7 @@ const ExerciseForm: React.FC<ExerciseFormProps> = ({
   const exerciseButtons = [
     {
       title: submitButtonTitle,
-      type,
+      type: ButtonType.submit,
       onPress: (exerciseDetails?: ExerciseDetailsForm) =>
         onPressSubmit(exerciseDetails),
     },

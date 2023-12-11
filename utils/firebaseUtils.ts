@@ -48,14 +48,13 @@ export const saveData = async <T>(path: string, userId: string, data: T) => {
   return await database().ref(path).child(userId).set(data);
 };
 
-export const pushUpdateItemInArray = async <T>(
+export const upsertFirebaseItem = async <T>(
   path: string,
   subpath: string,
-  userId: string,
   item: T,
   key?: string,
 ) => {
-  const itemsRef = database().ref(path).child(`${userId}/${subpath}`);
+  const itemsRef = database().ref(path).child(`${subpath}`);
   if (key) {
     itemsRef.update({[key]: item});
   } else {

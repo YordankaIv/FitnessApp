@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Pressable, ScrollView, Text, View} from 'react-native';
 import {exercises, paths} from '../../utils/constants';
 import {useQuery} from 'react-query';
@@ -36,7 +36,7 @@ const ExercisesList: React.FC = () => {
   >(exercises.EXERCISES_KEY, getExercises);
 
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       refetch();
     }, [refetch]),
   );

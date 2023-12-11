@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {KeyboardTypeOptions, View} from 'react-native';
+import {View} from 'react-native';
 import {useWizard} from 'react-use-wizard';
 import {
   ButtonType,
   Fields,
   FormField,
+  KeyboardType,
   Step1Form,
 } from '../../types/CommonTypes';
 import {auth, wizard} from '../../utils/constants';
@@ -26,8 +27,6 @@ const Step1: React.FC = () => {
     height: wizardData.height,
   });
 
-  const type: ButtonType = 'submit';
-  const keyboardType: KeyboardTypeOptions = 'numeric';
   const userFields: Array<FormField<Step1Form>> = [
     {
       label: auth.NAME_LABEL,
@@ -38,19 +37,19 @@ const Step1: React.FC = () => {
       label: wizard.AGE,
       name: Fields.age,
       required: false,
-      keyboardType,
+      keyboardType: KeyboardType.numeric,
     },
     {
       label: wizard.WEIGHT_LABEL,
       name: Fields.weight,
       required: false,
-      keyboardType,
+      keyboardType: KeyboardType.numeric,
     },
     {
       label: wizard.HEIGHT_LABEL,
       name: Fields.height,
       required: false,
-      keyboardType,
+      keyboardType: KeyboardType.numeric,
     },
   ];
 
@@ -64,7 +63,7 @@ const Step1: React.FC = () => {
   const userButtons = [
     {
       title: wizard.NEXT,
-      type,
+      type: ButtonType.submit,
       onPress: (data?: Step1Form) => onPressNext(data),
     },
   ];

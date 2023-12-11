@@ -1,4 +1,4 @@
-import {KeyboardTypeOptions, ReturnKeyTypeOptions} from 'react-native';
+import {ReturnKeyTypeOptions} from 'react-native';
 import store from '../redux/store';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FieldPath, FieldValues} from 'react-hook-form';
@@ -16,8 +16,19 @@ export enum Fields {
   times = 'times',
 }
 
+export enum KeyboardType {
+  email = 'email-address',
+  password = 'email-address',
+  numeric = 'numeric',
+}
+
+export enum ButtonType {
+  submit = 'submit',
+  reset = 'reset',
+  button = 'button',
+}
+
 export type ParamsType = {workoutKey?: string; exerciseKey?: string};
-export type ButtonType = 'submit' | 'reset' | 'button';
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
 export type SwitchType = {initialState: boolean; onPress: () => void};
@@ -37,7 +48,7 @@ export type FormField<T extends FieldValues> = {
   name: FieldPath<T>;
   required: boolean;
   placeholder?: string;
-  keyboardType?: KeyboardTypeOptions;
+  keyboardType?: KeyboardType;
   secureTextEntry?: boolean;
   multiline?: boolean;
   numberOfLines?: number;
@@ -55,7 +66,7 @@ export type InputProps = {
   label?: string;
   returnKeyType?: ReturnKeyTypeOptions;
   onChangeText?: (val: string) => void;
-  keyboardType?: KeyboardTypeOptions;
+  keyboardType?: KeyboardType;
   secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
   multiline?: boolean;

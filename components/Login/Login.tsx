@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyboardTypeOptions, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {Form} from '../../components';
 import {auth} from '../../utils/constants';
 import {loginUser} from '../../api/user';
@@ -7,6 +7,7 @@ import {
   ButtonType,
   Fields,
   FormField,
+  KeyboardType,
   LoginForm,
   Navigation,
 } from '../../types/CommonTypes';
@@ -40,15 +41,13 @@ const Login: React.FC = () => {
     },
   });
 
-  const type: ButtonType = 'submit';
-  const keyboardType: KeyboardTypeOptions = 'email-address';
   const loginFields: Array<FormField<LoginForm>> = [
     {
       label: auth.EMAIL_LABEL,
       placeholder: auth.EMAIL_PLACEHOLDER,
       name: Fields.email,
       required: true,
-      keyboardType,
+      keyboardType: KeyboardType.email,
     },
     {
       label: auth.PASSWORD_LABEL,
@@ -68,7 +67,7 @@ const Login: React.FC = () => {
   const loginButtons = [
     {
       title: auth.SIGN_IN,
-      type,
+      type: ButtonType.submit,
       onPress: (data?: LoginForm) => onPressSignIn(data),
     },
   ];

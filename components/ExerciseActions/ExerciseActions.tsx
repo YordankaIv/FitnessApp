@@ -3,7 +3,7 @@ import {exercises, paths} from '../../utils/constants';
 import {
   getSubData,
   getUserId,
-  pushUpdateItemInArray,
+  upsertFirebaseItem,
 } from '../../utils/firebaseUtils';
 import {ExerciseDetailsForm, Navigation} from '../../types/CommonTypes';
 import {useNavigation, useRoute} from '@react-navigation/native';
@@ -19,14 +19,14 @@ const ExerciseActions: React.FC = () => {
     ? exercises.EDIT_EXERCISE
     : exercises.ADD_EXERCISE;
 
-  const getExercise = async () =>
-    await (
-      await getSubData(
-        paths.USERS_PATH,
-        `${paths.WORKOUTS_PATH}/${workoutKey}/${paths.EXERCISES_PATH}/${exerciseKey}`,
-        uid,
-      )
-    ).val();
+  const getExercise = async () => {
+    const subDataResponse = await getSubData(
+      paths.USERS_PATH,
+      `${paths.WORKOUTS_PATH}/${workoutKey}/${paths.EXERCISES_PATH}/${exerciseKey}`,
+      uid,
+    );
+    return subDataResponse.val();
+  };
 
   const {data: savedExercise, isFetching} = useQuery<
     ExerciseDetailsForm,
@@ -34,17 +34,18 @@ const ExerciseActions: React.FC = () => {
   >(exercises.EXERCISE, getExercise);
 
   const onPressSubmit = async (exercise?: ExerciseDetailsForm) => {
-    if (exercise) {
-      await pushUpdateItemInArray(
-        paths.USERS_PATH,
-        `${paths.WORKOUTS_PATH}/${workoutKey}/${paths.EXERCISES_PATH}`,
-        uid,
-        exercise,
-        exerciseKey,
-      );
-
-      navigation.goBack();
+    if (!exercise) {
+      return;
     }
+
+    await upsertFirebaseItem(
+      paths.USERS_PATH,
+      `${uid}/${paths.WORKOUTS_PATH}/${workoutKey}/${paths.EXERCISES_PATH}`,
+      exercise,
+      exerciseKey,
+    );
+
+    navigation.goBack();
   };
 
   return (
