@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -15,15 +16,14 @@ const Button: React.FC<{
         disabled={isDisabled}
         onPress={() => onPress()}
         style={[style.button, isDisabled && style.disabled]}>
-        <Text
-          style={[
+        <DefaultText
+          customStyle={[
             style.title,
-            globalStyle.FontPlayfairDisplay,
             globalStyle.bolderWeight,
             globalStyle.LSize,
           ]}>
           {title}
-        </Text>
+        </DefaultText>
       </Pressable>
     </View>
   );

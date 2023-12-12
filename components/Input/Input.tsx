@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import {InputProps} from '../../types/CommonTypes';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -22,14 +23,9 @@ const Input: React.FC<InputProps> = ({
   return (
     <View>
       {label && (
-        <Text
-          style={[
-            style.label,
-            globalStyle.FontPlayfairDisplay,
-            globalStyle.MSize,
-          ]}>
+        <DefaultText customStyle={[style.label, globalStyle.MSize]}>
           {label}
-        </Text>
+        </DefaultText>
       )}
       <TextInput
         style={[

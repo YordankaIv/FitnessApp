@@ -19,11 +19,13 @@ import Step6 from './Step6/Step6';
 import StepWrapper from './StepWrapper/StepWrapper';
 import Switch from './Switch/Switch';
 import WizardFooter from './WizardFooter/WizardFooter';
+import DefaultText from './DefaultText/DefaultText';
 
 export {
   Button,
   Form,
   Input,
+  DefaultText,
   Login,
   RadioGroup,
   Registration,

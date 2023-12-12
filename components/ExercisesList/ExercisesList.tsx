@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Pressable, ScrollView, Text, View} from 'react-native';
+import {Pressable, ScrollView, View} from 'react-native';
 import {exercises, iconSizes, paths} from '../../utils/constants';
 import {useQuery} from 'react-query';
 import {getSubArray, getUserId} from '../../utils/firebaseUtils';
@@ -14,6 +14,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../../utils/colors';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {getExercisesPath} from '../../utils/utils';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -63,9 +64,9 @@ const ExercisesList: React.FC = () => {
         </Pressable>
         {!savedExercises || !savedExercises.length ? (
           <View>
-            <Text style={[globalStyle.FontPlayfairDisplay, globalStyle.LSize]}>
+            <DefaultText customStyle={globalStyle.LSize}>
               {exercises.NO_EXERCISES_TEXT}
-            </Text>
+            </DefaultText>
             <Button
               title={exercises.ADD_EXERCISE}
               onPress={onPressExerciseButton}
@@ -78,15 +79,14 @@ const ExercisesList: React.FC = () => {
                 key={index}
                 style={style.exerciseContainer}
                 onPress={() => onPressExerciseButton(exercise.id)}>
-                <Text
-                  style={[
-                    globalStyle.FontPlayfairDisplay,
+                <DefaultText
+                  customStyle={[
                     globalStyle.MSize,
                     globalStyle.bolderWeight,
                     style.exerciseText,
                   ]}>
                   {exercise.name}
-                </Text>
+                </DefaultText>
               </Pressable>
             ))}
           </>

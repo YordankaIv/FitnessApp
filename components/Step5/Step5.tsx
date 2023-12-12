@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {wizard} from '../../utils/constants';
 import {selectWizard} from '../../redux/reducers/WizardData';
 import {useSelector} from 'react-redux';
 import {fitnessWizardSummary} from '../../utils/fitnessConstants';
+import DefaultText from '../DefaultText/DefaultText';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -17,51 +18,41 @@ const Step5: React.FC = () => {
         {fitnessWizardSummary.map((summary, index) => (
           <View style={style.accountDetails} key={index}>
             <View style={globalStyle.MMarginRight}>
-              <Text
+              <DefaultText
                 key={index + summary.label}
-                style={[
-                  globalStyle.FontPlayfairDisplay,
+                customStyle={[
                   globalStyle.MSize,
                   globalStyle.bolderWeight,
                   style.summaryText,
                 ]}>
                 {summary.label}
-              </Text>
+              </DefaultText>
             </View>
             <View>
-              <Text
+              <DefaultText
                 key={index + summary.name}
-                style={[
-                  globalStyle.FontPlayfairDisplay,
-                  globalStyle.MSize,
-                  style.summaryText,
-                ]}>
+                customStyle={[globalStyle.MSize, style.summaryText]}>
                 {wizardData[summary.name]}
-              </Text>
+              </DefaultText>
             </View>
           </View>
         ))}
       </View>
       <View style={[globalStyle.LMarginTop, style.summaryBlock]}>
-        <Text
-          style={[
-            globalStyle.FontPlayfairDisplay,
+        <DefaultText
+          customStyle={[
             globalStyle.LSize,
             globalStyle.bolderWeight,
             style.summaryText,
           ]}>
           {wizard.WORKOUTS_LABEL}
-        </Text>
+        </DefaultText>
         {wizardData.workouts.map((workout, index) => (
-          <Text
+          <DefaultText
             key={index + workout.label}
-            style={[
-              globalStyle.FontPlayfairDisplay,
-              globalStyle.MSize,
-              style.summaryText,
-            ]}>
+            customStyle={[globalStyle.MSize, style.summaryText]}>
             {workout.label}
-          </Text>
+          </DefaultText>
         ))}
       </View>
     </View>

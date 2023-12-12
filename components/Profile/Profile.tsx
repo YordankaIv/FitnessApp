@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, View} from 'react-native';
 import {exercises, iconSizes, paths, wizard} from '../../utils/constants';
 import {useQuery} from 'react-query';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -7,6 +7,7 @@ import {faBolt, faHeart} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from '../../utils/colors';
 import {getData, getUserId} from '../../utils/firebaseUtils';
 import {User} from '../../types/CommonTypes';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -33,15 +34,14 @@ const Profile: React.FC = () => {
       contentContainerStyle={globalStyle.pageContainer}>
       <View style={[globalStyle.flex]}>
         <View>
-          <Text
-            style={[
-              globalStyle.FontPlayfairDisplay,
+          <DefaultText
+            customStyle={[
               globalStyle.bolderWeight,
               globalStyle.XXLSize,
               style.profileText,
             ]}>
             {userData?.name}
-          </Text>
+          </DefaultText>
         </View>
         <View style={style.profileImageContainer}>
           <Image
@@ -59,18 +59,13 @@ const Profile: React.FC = () => {
                   size={iconSizes.MSize}
                   color={Colors.black}
                 />
-                <Text
-                  style={[
-                    globalStyle.FontPlayfairDisplay,
-                    globalStyle.LSize,
-                    style.profileText,
-                  ]}>
+                <DefaultText
+                  customStyle={[globalStyle.LSize, style.profileText]}>
                   {userData && userData[info.title.toLocaleLowerCase()]}
-                </Text>
-                <Text
-                  style={[globalStyle.FontPlayfairDisplay, globalStyle.LSize]}>
+                </DefaultText>
+                <DefaultText customStyle={globalStyle.LSize}>
                   {info.title}
-                </Text>
+                </DefaultText>
               </View>
             ))}
         </View>

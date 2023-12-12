@@ -4,10 +4,9 @@ import {
   ImageBackground,
   SafeAreaView,
   ScrollView,
-  Text,
   View,
 } from 'react-native';
-import {Button} from '../../components';
+import {Button, DefaultText} from '../../components';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../navigation/Routes';
 import {intro, wizard} from '../../utils/constants';
@@ -31,25 +30,20 @@ const Intro: React.FC = () => {
           <View style={[globalStyle.flex, style.container]}>
             <View style={globalStyle.image}>
               <View style={globalStyle.LMarginBottom}>
-                <Text
-                  style={[
-                    globalStyle.FontPlayfairDisplay,
+                <DefaultText
+                  customStyle={[
                     globalStyle.XXXLSize,
                     globalStyle.bolderWeight,
                     globalStyle.header,
                   ]}>
                   {intro.APP_NAME}
-                </Text>
+                </DefaultText>
               </View>
               <View>
-                <Text
-                  style={[
-                    globalStyle.FontPlayfairDisplay,
-                    globalStyle.MSize,
-                    globalStyle.header,
-                  ]}>
+                <DefaultText
+                  customStyle={[globalStyle.MSize, globalStyle.header]}>
                   {intro.HEADER}
-                </Text>
+                </DefaultText>
               </View>
             </View>
             <View style={style.buttonContainer}>

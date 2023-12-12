@@ -1,7 +1,8 @@
-import {TextInputProps} from 'react-native';
+import {TextInputProps, TextStyle} from 'react-native';
 import store from '../redux/store';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FieldPath, FieldValues} from 'react-hook-form';
+import {PropsWithChildren} from 'react';
 
 export enum Fields {
   email = 'email',
@@ -63,6 +64,10 @@ export type FormButton<T> = {
 export type InputProps = TextInputProps & {
   label?: string;
   onInputBlur?: (val: string) => void;
+};
+
+export type DefaultTextProps = PropsWithChildren & {
+  customStyle?: TextStyle | Array<TextStyle>;
 };
 
 export interface ExerciseFormProps {

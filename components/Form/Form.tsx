@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {Controller, FieldValues, useForm} from 'react-hook-form';
-import {Button, Input} from '../../components';
+import {Button, DefaultText, Input} from '../../components';
 import {
   ButtonType,
   FormField,
@@ -45,14 +45,9 @@ const Form = <T extends FieldValues>({
     <View style={[globalStyle.flex, style.formContainer]}>
       {fields.map(field => (
         <View key={field.name} style={style.fieldContainer}>
-          <Text
-            style={[
-              style.label,
-              globalStyle.FontPlayfairDisplay,
-              globalStyle.LSize,
-            ]}>
+          <DefaultText customStyle={[style.label, globalStyle.LSize]}>
             {field.label}
-          </Text>
+          </DefaultText>
           <Controller
             control={control}
             render={({field: {onChange, value}}) => (
