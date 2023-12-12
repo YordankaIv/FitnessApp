@@ -1,4 +1,4 @@
-import {ReturnKeyTypeOptions} from 'react-native';
+import {TextInputProps} from 'react-native';
 import store from '../redux/store';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FieldPath, FieldValues} from 'react-hook-form';
@@ -28,6 +28,11 @@ export enum ButtonType {
   button = 'button',
 }
 
+export enum ReturnKeyType {
+  next = 'next',
+  done = 'done',
+}
+
 export type ParamsType = {workoutKey?: string; exerciseKey?: string};
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
@@ -43,15 +48,10 @@ export type Navigation = {
 export type WorkoutListItem = {label: string; checked: boolean; key?: string};
 export type Workout = {label: string; name: string};
 
-export type FormField<T extends FieldValues> = {
+export type FormField<T extends FieldValues> = TextInputProps & {
   label: string;
   name: FieldPath<T>;
   required: boolean;
-  placeholder?: string;
-  keyboardType?: KeyboardType;
-  secureTextEntry?: boolean;
-  multiline?: boolean;
-  numberOfLines?: number;
 };
 
 export type FormButton<T> = {
@@ -60,17 +60,9 @@ export type FormButton<T> = {
   onPress: (data?: T) => void;
 };
 
-export type InputProps = {
-  placeholder?: string;
-  inputValue?: string;
+export type InputProps = TextInputProps & {
   label?: string;
-  returnKeyType?: ReturnKeyTypeOptions;
-  onChangeText?: (val: string) => void;
-  keyboardType?: KeyboardType;
-  secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
-  multiline?: boolean;
-  numberOfLines?: number;
 };
 
 export interface ExerciseFormProps {

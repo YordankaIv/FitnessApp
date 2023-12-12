@@ -34,6 +34,11 @@ const wizard = {
   WORKOUT_INPUT_PLACEHOLDER: 'Enter your kind of workouts...',
 };
 
+const iconSizes = {
+  MSize: 22,
+  LSize: 28,
+};
+
 const paths = {
   USERS_PATH: 'users',
   WORKOUTS_PATH: 'workouts',
@@ -86,4 +91,4 @@ const exercises = {
   DEFAULT_NUMBER_OF_TEXTAREA: 5,
 };
 
-export {intro, errors, auth, wizard, paths, tabs, exercises};
+export {intro, errors, auth, wizard, paths, tabs, exercises, iconSizes};

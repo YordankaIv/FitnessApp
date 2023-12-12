@@ -7,15 +7,9 @@ import globalStyle from '../../assets/styles/globalStyle';
 
 const Input: React.FC<InputProps> = ({
   label,
-  returnKeyType = 'done',
-  placeholder,
-  inputValue,
-  onChangeText,
-  keyboardType = 'default',
-  secureTextEntry = false,
   onInputBlur,
-  multiline,
-  numberOfLines,
+  onChangeText,
+  ...rest
 }) => {
   const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -38,9 +32,6 @@ const Input: React.FC<InputProps> = ({
         </Text>
       )}
       <TextInput
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        placeholder={placeholder}
         style={[
           globalStyle.input,
           globalStyle.bolderWeight,
@@ -48,16 +39,13 @@ const Input: React.FC<InputProps> = ({
           globalStyle.MSize,
           isFocused && style.focusedInput,
         ]}
-        multiline={multiline}
-        numberOfLines={numberOfLines}
-        returnKeyType={returnKeyType}
-        value={inputValue ?? value}
         onBlur={onFieldBlur}
         onFocus={() => setIsFocused(true)}
         onChangeText={val => {
           setValue(val);
-          onChangeText && onChangeText(val);
+          onChangeText?.(val);
         }}
+        {...rest}
       />
     </View>
   );

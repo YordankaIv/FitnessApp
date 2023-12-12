@@ -2,7 +2,13 @@ import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {Controller, FieldValues, useForm} from 'react-hook-form';
 import {Button, Input} from '../../components';
-import {FormField, FormProps} from '../../types/CommonTypes';
+import {
+  ButtonType,
+  FormField,
+  FormProps,
+  KeyboardType,
+  ReturnKeyType,
+} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -29,7 +35,9 @@ const Form = <T extends FieldValues>({
     onChange: (event: string) => void,
   ) => {
     const currentVal =
-      field.keyboardType === 'numeric' ? value.replace(/[^0-9]/g, '') : value;
+      field.keyboardType === KeyboardType.numeric
+        ? value.replace(/[^0-9]/g, '')
+        : value;
     onChange(currentVal);
   };
 
@@ -51,10 +59,10 @@ const Form = <T extends FieldValues>({
               <Input
                 placeholder={field.placeholder}
                 onChangeText={val => onChangeValue(val, field, onChange)}
-                returnKeyType={'next'}
+                returnKeyType={ReturnKeyType.next}
                 keyboardType={field.keyboardType}
                 secureTextEntry={field.secureTextEntry}
-                inputValue={value}
+                value={value}
                 multiline={field.multiline}
                 numberOfLines={field.numberOfLines}
               />
@@ -71,7 +79,7 @@ const Form = <T extends FieldValues>({
             title={button.title}
             isDisabled={!isValid}
             onPress={
-              button.type === 'submit'
+              button.type === ButtonType.submit
                 ? handleSubmit(button.onPress)
                 : button.onPress
             }

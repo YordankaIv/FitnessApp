@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, ScrollView, Text, View} from 'react-native';
-import {exercises, paths, wizard} from '../../utils/constants';
+import {exercises, iconSizes, paths, wizard} from '../../utils/constants';
 import {useQuery} from 'react-query';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBolt, faHeart} from '@fortawesome/free-solid-svg-icons';
@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
               <View key={index} style={style.profileBlock}>
                 <FontAwesomeIcon
                   icon={info.icon}
-                  size={22}
+                  size={iconSizes.MSize}
                   color={Colors.black}
                 />
                 <Text

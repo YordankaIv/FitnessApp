@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {Pressable, ScrollView, Text, View} from 'react-native';
-import {exercises, paths} from '../../utils/constants';
+import {exercises, iconSizes, paths} from '../../utils/constants';
 import {useQuery} from 'react-query';
 import {getSubArray, getUserId} from '../../utils/firebaseUtils';
 import {ExerciseDetailsForm, Navigation} from '../../types/CommonTypes';
@@ -13,6 +13,7 @@ import Button from '../Button/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../../utils/colors';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {getExercisesPath} from '../../utils/utils';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -23,12 +24,10 @@ const ExercisesList: React.FC = () => {
   const route = useRoute();
   const workoutKey = route.params?.workoutKey;
 
-  const getExercises = async () =>
-    await getSubArray(
-      paths.USERS_PATH,
-      `${paths.WORKOUTS_PATH}/${workoutKey}/${paths.EXERCISES_PATH}`,
-      uid,
-    );
+  const getExercises = async () => {
+    const subpath = getExercisesPath(workoutKey);
+    return await getSubArray(paths.USERS_PATH, subpath, uid);
+  };
 
   const {data: savedExercises, refetch} = useQuery<
     Array<ExerciseDetailsForm>,
@@ -56,7 +55,11 @@ const ExercisesList: React.FC = () => {
         <Pressable
           onPress={() => onPressExerciseButton()}
           style={style.addExerciseButton}>
-          <FontAwesomeIcon icon={faPlus} size={28} color={Colors.black} />
+          <FontAwesomeIcon
+            icon={faPlus}
+            size={iconSizes.LSize}
+            color={Colors.black}
+          />
         </Pressable>
         {!savedExercises || !savedExercises.length ? (
           <View>
