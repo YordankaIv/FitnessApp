@@ -24,6 +24,9 @@ const globalStyle = StyleSheet.create({
     marginHorizontal: horizontalScale(24),
     flex: 1,
   },
+  pageMargin: {
+    marginHorizontal: horizontalScale(24),
+  },
   error: {
     fontFamily: 'PlayfairDisplay',
     fontSize: scaleFontSize(16),

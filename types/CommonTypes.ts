@@ -46,6 +46,14 @@ export type Navigation = {
   goBack: () => void;
 };
 
+export type RadioGroupProps = {
+  radioButtons: Array<{value: string}>;
+  onSelect: (option: string) => void;
+  selectedValue?: string;
+};
+
+export type StepWrapperProps = {component: React.FC; header: string};
+
 export type WorkoutListItem = {label: string; checked: boolean; key?: string};
 export type Workout = {label: string; name: string};
 
@@ -58,12 +66,21 @@ export type FormField<T extends FieldValues> = TextInputProps & {
 export type FormButton<T> = {
   title: string;
   type?: ButtonType;
-  onPress: (data?: T) => void;
+  onPress: (formValues?: T) => void;
 };
 
 export type InputProps = TextInputProps & {
   label?: string;
   onInputBlur?: (val: string) => void;
+};
+
+export type FirebaseUser = {
+  status: boolean;
+  data: {
+    displayName: string | null;
+    email: string | null;
+    token: string;
+  };
 };
 
 export type DefaultTextProps = PropsWithChildren & {

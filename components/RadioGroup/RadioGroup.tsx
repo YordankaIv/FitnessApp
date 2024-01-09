@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import {View, Pressable} from 'react-native';
 import {Colors} from '../../utils/colors';
 import DefaultText from '../DefaultText/DefaultText';
+import {RadioGroupProps} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
-const RadioGroup: React.FC<{
-  data: Array<{value: string}>;
-  onSelect: (option: string) => void;
-  selectedValue?: string;
-}> = ({data, onSelect, selectedValue}) => {
+const RadioGroup: React.FC<RadioGroupProps> = ({
+  radioButtons,
+  onSelect,
+  selectedValue,
+}) => {
   const [userOption, setUserOption] = useState<string | null>(
     selectedValue ?? null,
   );
@@ -22,7 +23,7 @@ const RadioGroup: React.FC<{
 
   return (
     <View>
-      {data.map((item, index) => (
+      {radioButtons.map((item, index) => (
         <Pressable
           key={index}
           style={item.value === userOption ? style.selected : style.unselected}

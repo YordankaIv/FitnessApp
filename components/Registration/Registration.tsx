@@ -22,8 +22,9 @@ const Registration: React.FC = () => {
   const navigation = useNavigation<Navigation>();
 
   const {mutate: mutateSignUp} = useMutation({
-    mutationFn: async (data: RegistrationForm) => {
-      return await createUser(data.fullName, data.email, data.password);
+    mutationFn: async (formValues: RegistrationForm) => {
+      const {fullName, email, password} = formValues;
+      return await createUser(fullName, email, password);
     },
     onError: async (error: ErrorType) => {
       let userError = onCreateUserError(error);
@@ -66,18 +67,21 @@ const Registration: React.FC = () => {
     {
       title: auth.SIGN_UP,
       type: ButtonType.submit,
-      onPress: (data?: RegistrationForm) => onPressSignUp(data),
+      onPress: (formValues?: RegistrationForm) => onPressSignUp(formValues),
     },
   ];
 
-  const onPressSignUp = (data?: RegistrationForm) => {
-    if (data) {
-      mutateSignUp({
-        fullName: data.fullName,
-        email: data.email,
-        password: data.password,
-      });
+  const onPressSignUp = (formValues?: RegistrationForm) => {
+    if (!formValues) {
+      return;
     }
+
+    const {fullName, email, password} = formValues;
+    mutateSignUp({
+      fullName,
+      email,
+      password,
+    });
   };
 
   return (

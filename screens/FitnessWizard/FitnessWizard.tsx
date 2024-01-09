@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, SafeAreaView, ScrollView} from 'react-native';
+import {Image, ScrollView, View} from 'react-native';
 import {Wizard} from 'react-use-wizard';
 import {
   Step1,
@@ -29,17 +29,16 @@ const FitnessWizard: React.FC = () => {
   ];
 
   return (
-    <SafeAreaView style={globalStyle.flex}>
+    <View style={globalStyle.flex}>
       {!isKeyboardVisible && (
         <Image
           style={globalStyle.imageBottom}
           source={require('../../assets/images/ellipse.png')}
         />
       )}
-
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={globalStyle.pageContainer}>
+        contentContainerStyle={globalStyle.pageMargin}>
         <Wizard
           startIndex={wizard.DEFAULT_WIZARD_INDEX}
           footer={<WizardFooter />}>
@@ -48,7 +47,7 @@ const FitnessWizard: React.FC = () => {
           ))}
         </Wizard>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

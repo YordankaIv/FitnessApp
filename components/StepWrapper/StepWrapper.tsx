@@ -1,17 +1,17 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Dimensions, Image, View} from 'react-native';
 import DefaultText from '../DefaultText/DefaultText';
+import {wizard} from '../../utils/constants';
+import {StepWrapperProps} from '../../types/CommonTypes';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
-const StepWrapper: React.FC<{component: React.FC; header: string}> = ({
-  component,
-  header,
-}) => {
+const StepWrapper: React.FC<StepWrapperProps> = ({component, header}) => {
   const WrappedComponent = component;
+  const ScreenHeight = Dimensions.get('window').height - wizard.FOOTER_HEIGHT;
 
   return (
-    <View style={globalStyle.flex}>
+    <View style={[globalStyle.flex, {height: ScreenHeight}]}>
       <View>
         <Image source={require('../../assets/images/wizard_girl.png')} />
         <View style={globalStyle.wizardHeader}>

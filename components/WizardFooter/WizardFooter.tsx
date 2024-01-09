@@ -12,7 +12,7 @@ const WizardFooter: React.FC = () => {
   const {isFirstStep, isLastStep, previousStep, nextStep} = useWizard();
 
   return (
-    <View style={style.headerContainer}>
+    <View style={style.footerContainer}>
       {!isKeyboardVisible && (
         <View style={style.buttonContainer}>
           {!isFirstStep && (

@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
 import {verticalScale} from '../../assets/styles/scaling';
+import {wizard} from '../../utils/constants';
 
 const style = StyleSheet.create({
-  headerContainer: {
-    height: verticalScale(90),
+  footerContainer: {
+    height: verticalScale(wizard.FOOTER_HEIGHT),
   },
   buttonContainer: {
     flex: 1,

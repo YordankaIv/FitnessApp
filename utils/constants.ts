@@ -32,6 +32,7 @@ const wizard = {
   DEFAULT_WIZARD_INDEX: 0,
   NONE_INDEX: -1,
   WORKOUT_INPUT_PLACEHOLDER: 'Enter your kind of workouts...',
+  FOOTER_HEIGHT: 90,
 };
 
 const iconSizes = {
