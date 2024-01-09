@@ -1,7 +1,8 @@
-import {KeyboardTypeOptions, ReturnKeyTypeOptions} from 'react-native';
+import {TextInputProps, TextStyle} from 'react-native';
 import store from '../redux/store';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FieldPath, FieldValues} from 'react-hook-form';
+import {PropsWithChildren} from 'react';
 
 export enum Fields {
   email = 'email',
@@ -11,10 +12,29 @@ export enum Fields {
   age = 'age',
   weight = 'weight',
   height = 'height',
+  duration = 'duration',
+  description = 'description',
+  times = 'times',
 }
 
-export type ParamsType = {key: string};
-export type ButtonType = 'submit' | 'reset' | 'button';
+export enum KeyboardType {
+  email = 'email-address',
+  password = 'email-address',
+  numeric = 'numeric',
+}
+
+export enum ButtonType {
+  submit = 'submit',
+  reset = 'reset',
+  button = 'button',
+}
+
+export enum ReturnKeyType {
+  next = 'next',
+  done = 'done',
+}
+
+export type ParamsType = {workoutKey?: string; exerciseKey?: string};
 export type RootState = ReturnType<typeof store.getState>;
 export type HookBooleanReturnType = () => boolean;
 export type SwitchType = {initialState: boolean; onPress: () => void};
@@ -23,19 +43,16 @@ export type ErrorType = {code: string};
 export type Navigation = {
   navigate: (props: string, params?: ParamsType) => void;
   jumpTo: (props: string) => void;
+  goBack: () => void;
 };
 
 export type WorkoutListItem = {label: string; checked: boolean; key?: string};
-export type ExerciseListItem = {label: string};
 export type Workout = {label: string; name: string};
 
-export type FormField<T extends FieldValues> = {
+export type FormField<T extends FieldValues> = TextInputProps & {
   label: string;
   name: FieldPath<T>;
   required: boolean;
-  placeholder?: string;
-  keyboardType?: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
 };
 
 export type FormButton<T> = {
@@ -44,16 +61,20 @@ export type FormButton<T> = {
   onPress: (data?: T) => void;
 };
 
-export type InputProps = {
-  placeholder?: string;
-  inputValue?: string;
+export type InputProps = TextInputProps & {
   label?: string;
-  returnKeyType?: ReturnKeyTypeOptions;
-  onChangeText?: (val: string) => void;
-  keyboardType?: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
   onInputBlur?: (val: string) => void;
 };
+
+export type DefaultTextProps = PropsWithChildren & {
+  customStyle?: TextStyle | Array<TextStyle>;
+};
+
+export interface ExerciseFormProps {
+  submitButtonTitle: string;
+  onPressSubmit: (exerciseDetails: ExerciseDetailsForm | undefined) => void;
+  initialExerciseValues?: ExerciseDetailsForm;
+}
 
 export interface User {
   name: string;
@@ -87,4 +108,12 @@ export interface RegistrationForm {
   fullName: string;
   email: string;
   password: string;
+}
+
+export interface ExerciseDetailsForm {
+  id: string;
+  name: string;
+  duration: string;
+  times: string;
+  description: string;
 }

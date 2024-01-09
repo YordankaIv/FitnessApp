@@ -1,43 +1,51 @@
-import React from 'react';
-import {Pressable, ScrollView, Text, View} from 'react-native';
-import {exercises, paths} from '../../utils/constants';
+import React, {useCallback} from 'react';
+import {Pressable, ScrollView, View} from 'react-native';
+import {exercises, iconSizes, paths} from '../../utils/constants';
 import {useQuery} from 'react-query';
-import {getSubData, getUserId} from '../../utils/firebaseUtils';
-import {ExerciseListItem, Navigation} from '../../types/CommonTypes';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {getSubArray, getUserId} from '../../utils/firebaseUtils';
+import {ExerciseDetailsForm, Navigation} from '../../types/CommonTypes';
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import Button from '../Button/Button';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Colors} from '../../utils/colors';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {getExercisesPath} from '../../utils/utils';
+import DefaultText from '../DefaultText/DefaultText';
 
+import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const ExercisesList: React.FC = () => {
   const navigation = useNavigation<Navigation>();
   const uid = getUserId();
   const route = useRoute();
-  const workoutKey = route.params?.key;
+  const workoutKey = route.params?.workoutKey;
 
   const getExercises = async () => {
-    const data = await (
-      await getSubData(
-        paths.USERS_PATH,
-        paths.WORKOUTS_PATH + '/' + workoutKey,
-        uid,
-      )
-    ).val();
-    return data.exercises;
+    const subpath = getExercisesPath(workoutKey);
+    return await getSubArray(paths.USERS_PATH, subpath, uid);
   };
 
-  const {data: savedExercises} = useQuery<Array<ExerciseListItem>, Error>(
-    exercises.EXERCISES_KEY,
-    getExercises,
+  const {data: savedExercises, refetch} = useQuery<
+    Array<ExerciseDetailsForm>,
+    Error
+  >(exercises.EXERCISES_KEY, getExercises);
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch]),
   );
 
-  const onPressAddExercise = () => {
-    // navigation.navigate(exercises.ADD_EXERCISE, {
-    //   key: workoutKey,
-    // });
+  const onPressExerciseButton = (exerciseKey?: string) => {
+    navigation.navigate(exercises.EXERCISE, {
+      workoutKey,
+      exerciseKey,
+    });
   };
 
   return (
@@ -45,19 +53,43 @@ const ExercisesList: React.FC = () => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={globalStyle.pageContainer}>
       <View style={[globalStyle.flex]}>
-        <Pressable onPress={onPressAddExercise}>
-          <FontAwesomeIcon icon={faPlus} size={22} color={Colors.black} />
+        <Pressable
+          onPress={() => onPressExerciseButton()}
+          style={style.addExerciseButton}>
+          <FontAwesomeIcon
+            icon={faPlus}
+            size={iconSizes.LSize}
+            color={Colors.black}
+          />
         </Pressable>
-        {(!savedExercises || !savedExercises.length) && (
+        {!savedExercises || !savedExercises.length ? (
           <View>
-            <Text style={[globalStyle.FontPlayfairDisplay, globalStyle.LSize]}>
+            <DefaultText customStyle={globalStyle.LSize}>
               {exercises.NO_EXERCISES_TEXT}
-            </Text>
+            </DefaultText>
             <Button
               title={exercises.ADD_EXERCISE}
-              onPress={onPressAddExercise}
+              onPress={onPressExerciseButton}
             />
           </View>
+        ) : (
+          <>
+            {savedExercises.map((exercise, index) => (
+              <Pressable
+                key={index}
+                style={style.exerciseContainer}
+                onPress={() => onPressExerciseButton(exercise.id)}>
+                <DefaultText
+                  customStyle={[
+                    globalStyle.MSize,
+                    globalStyle.bolderWeight,
+                    style.exerciseText,
+                  ]}>
+                  {exercise.name}
+                </DefaultText>
+              </Pressable>
+            ))}
+          </>
         )}
       </View>
     </ScrollView>

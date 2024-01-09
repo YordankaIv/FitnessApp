@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {Input, Switch} from '../../components';
+import {DefaultText, Input, Switch} from '../../components';
 import {selectWizard, updateUserData} from '../../redux/reducers/WizardData';
 import {useDispatch, useSelector} from 'react-redux';
 import {fitnessWorkouts} from '../../utils/fitnessConstants';
 import {wizard} from '../../utils/constants';
-import {WorkoutListItem} from '../../types/CommonTypes';
+import {ReturnKeyType, WorkoutListItem} from '../../types/CommonTypes';
 import {fitnessWorkoutsSchema} from '../../utils/yup/yupWorkoutsSchema';
 import * as Yup from 'yup';
 
@@ -91,8 +91,8 @@ const Step4: React.FC = () => {
           placeholder={wizard.WORKOUT_INPUT_PLACEHOLDER}
           onChangeText={(value: string) => setCustomWorkoutValue(value)}
           onInputBlur={onBlurFitnessInput}
-          returnKeyType={'done'}
-          inputValue={customWorkoutValue}
+          returnKeyType={ReturnKeyType.done}
+          value={customWorkoutValue}
         />
       </View>
       {errors.customWorkoutValue && (
@@ -102,15 +102,14 @@ const Step4: React.FC = () => {
         <ScrollView persistentScrollbar={true} fadingEdgeLength={300}>
           {fitnessCategoriesWorkout.map((workout, index) => (
             <View key={index} style={style.selectedWorkoutItem}>
-              <Text
-                style={[
-                  globalStyle.FontPlayfairDisplay,
+              <DefaultText
+                customStyle={[
                   globalStyle.bolderWeight,
                   globalStyle.MSize,
                   style.itemLabel,
                 ]}>
                 {workout.label}
-              </Text>
+              </DefaultText>
               <Switch
                 initialState={workout.checked}
                 onPress={() => {

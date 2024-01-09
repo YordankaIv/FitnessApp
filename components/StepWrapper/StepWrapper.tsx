@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, View} from 'react-native';
+import DefaultText from '../DefaultText/DefaultText';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -14,15 +15,14 @@ const StepWrapper: React.FC<{component: React.FC; header: string}> = ({
       <View>
         <Image source={require('../../assets/images/wizard_girl.png')} />
         <View style={globalStyle.wizardHeader}>
-          <Text
-            style={[
-              globalStyle.FontPlayfairDisplay,
+          <DefaultText
+            customStyle={[
               globalStyle.XLSize,
               globalStyle.bolderWeight,
               globalStyle.header,
             ]}>
             {header}
-          </Text>
+          </DefaultText>
         </View>
       </View>
       <WrappedComponent />

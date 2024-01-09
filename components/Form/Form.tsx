@@ -1,8 +1,14 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {Controller, FieldValues, useForm} from 'react-hook-form';
-import {Button, Input} from '../../components';
-import {FormField, FormProps} from '../../types/CommonTypes';
+import {Button, DefaultText, Input} from '../../components';
+import {
+  ButtonType,
+  FormField,
+  FormProps,
+  KeyboardType,
+  ReturnKeyType,
+} from '../../types/CommonTypes';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -29,7 +35,9 @@ const Form = <T extends FieldValues>({
     onChange: (event: string) => void,
   ) => {
     const currentVal =
-      field.keyboardType === 'numeric' ? value.replace(/[^0-9]/g, '') : value;
+      field.keyboardType === KeyboardType.numeric
+        ? value.replace(/[^0-9]/g, '')
+        : value;
     onChange(currentVal);
   };
 
@@ -37,24 +45,21 @@ const Form = <T extends FieldValues>({
     <View style={[globalStyle.flex, style.formContainer]}>
       {fields.map(field => (
         <View key={field.name} style={style.fieldContainer}>
-          <Text
-            style={[
-              style.label,
-              globalStyle.FontPlayfairDisplay,
-              globalStyle.LSize,
-            ]}>
+          <DefaultText customStyle={[style.label, globalStyle.LSize]}>
             {field.label}
-          </Text>
+          </DefaultText>
           <Controller
             control={control}
             render={({field: {onChange, value}}) => (
               <Input
                 placeholder={field.placeholder}
                 onChangeText={val => onChangeValue(val, field, onChange)}
-                returnKeyType={'next'}
+                returnKeyType={ReturnKeyType.next}
                 keyboardType={field.keyboardType}
                 secureTextEntry={field.secureTextEntry}
-                inputValue={value}
+                value={value}
+                multiline={field.multiline}
+                numberOfLines={field.numberOfLines}
               />
             )}
             name={field.name}
@@ -69,7 +74,7 @@ const Form = <T extends FieldValues>({
             title={button.title}
             isDisabled={!isValid}
             onPress={
-              button.type === 'submit'
+              button.type === ButtonType.submit
                 ? handleSubmit(button.onPress)
                 : button.onPress
             }

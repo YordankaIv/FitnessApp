@@ -41,7 +41,7 @@ const Exercises: React.FC = () => {
   const onPressWorkout = (workoutKey?: string) => {
     if (workoutKey) {
       navigation.navigate(exercises.LIST, {
-        key: workoutKey,
+        workoutKey,
       });
     }
   };

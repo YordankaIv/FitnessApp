@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {KeyboardTypeOptions, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import Form from '../Form/Form';
 import {createUser, onCreateUserError} from '../../api/user';
 import {auth} from '../../utils/constants';
@@ -8,6 +8,7 @@ import {
   ErrorType,
   Fields,
   FormField,
+  KeyboardType,
   Navigation,
   RegistrationForm,
 } from '../../types/CommonTypes';
@@ -38,8 +39,6 @@ const Registration: React.FC = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  const type: ButtonType = 'submit';
-  const keyboardType: KeyboardTypeOptions = 'email-address';
   const registrationFields: Array<FormField<RegistrationForm>> = [
     {
       label: auth.NAME_LABEL,
@@ -52,7 +51,7 @@ const Registration: React.FC = () => {
       placeholder: auth.EMAIL_PLACEHOLDER,
       name: Fields.email,
       required: true,
-      keyboardType,
+      keyboardType: KeyboardType.email,
     },
     {
       label: auth.PASSWORD_LABEL,
@@ -66,7 +65,7 @@ const Registration: React.FC = () => {
   const registrationButtons = [
     {
       title: auth.SIGN_UP,
-      type,
+      type: ButtonType.submit,
       onPress: (data?: RegistrationForm) => onPressSignUp(data),
     },
   ];

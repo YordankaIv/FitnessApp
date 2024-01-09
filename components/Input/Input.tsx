@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import {InputProps} from '../../types/CommonTypes';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
 const Input: React.FC<InputProps> = ({
   label,
-  returnKeyType = 'done',
-  placeholder,
-  inputValue,
-  onChangeText,
-  keyboardType = 'default',
-  secureTextEntry = false,
   onInputBlur,
+  onChangeText,
+  ...rest
 }) => {
   const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -26,19 +23,11 @@ const Input: React.FC<InputProps> = ({
   return (
     <View>
       {label && (
-        <Text
-          style={[
-            style.label,
-            globalStyle.FontPlayfairDisplay,
-            globalStyle.MSize,
-          ]}>
+        <DefaultText customStyle={[style.label, globalStyle.MSize]}>
           {label}
-        </Text>
+        </DefaultText>
       )}
       <TextInput
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        placeholder={placeholder}
         style={[
           globalStyle.input,
           globalStyle.bolderWeight,
@@ -46,14 +35,13 @@ const Input: React.FC<InputProps> = ({
           globalStyle.MSize,
           isFocused && style.focusedInput,
         ]}
-        returnKeyType={returnKeyType}
-        value={inputValue ?? value}
         onBlur={onFieldBlur}
         onFocus={() => setIsFocused(true)}
         onChangeText={val => {
           setValue(val);
-          onChangeText && onChangeText(val);
+          onChangeText?.(val);
         }}
+        {...rest}
       />
     </View>
   );

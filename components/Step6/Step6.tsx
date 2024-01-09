@@ -8,7 +8,7 @@ import {useMutation} from 'react-query';
 import {getUserId, saveData} from '../../utils/firebaseUtils';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../navigation/Routes';
-import {Navigation, Workout} from '../../types/CommonTypes';
+import {Navigation, User} from '../../types/CommonTypes';
 
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -18,16 +18,8 @@ const Step6: React.FC = () => {
   const uid = getUserId();
 
   const {mutate: mutateSaveFitnessData} = useMutation({
-    mutationFn: async (data: {
-      name: string;
-      age: string;
-      weight: string;
-      height: string;
-      level: string;
-      goal: string;
-      workouts: Array<Workout>;
-    }) => {
-      return await saveData(paths.USERS_PATH, uid, data);
+    mutationFn: async (user: User) => {
+      return await saveData(paths.USERS_PATH, uid, user);
     },
   });
 

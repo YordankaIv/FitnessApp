@@ -1,4 +1,6 @@
+import ExerciseActions from './ExerciseActions/ExerciseActions';
 import Button from './Button/Button';
+import ExerciseForm from './ExerciseForm/ExerciseForm';
 import Exercises from './Exercises/Exercises';
 import ExercisesList from './ExercisesList/ExercisesList';
 import ExercisesStackScreen from './ExercisesStackScreen/ExercisesStackScreen';
@@ -17,11 +19,13 @@ import Step6 from './Step6/Step6';
 import StepWrapper from './StepWrapper/StepWrapper';
 import Switch from './Switch/Switch';
 import WizardFooter from './WizardFooter/WizardFooter';
+import DefaultText from './DefaultText/DefaultText';
 
 export {
   Button,
   Form,
   Input,
+  DefaultText,
   Login,
   RadioGroup,
   Registration,
@@ -38,4 +42,6 @@ export {
   ExercisesStackScreen,
   ExercisesList,
   Exercises,
+  ExerciseActions,
+  ExerciseForm,
 };

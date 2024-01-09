@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
 import {Colors} from '../../utils/colors';
+import DefaultText from '../DefaultText/DefaultText';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -26,9 +27,8 @@ const RadioGroup: React.FC<{
           key={index}
           style={item.value === userOption ? style.selected : style.unselected}
           onPress={() => selectOption(item.value)}>
-          <Text
-            style={[
-              globalStyle.FontPlayfairDisplay,
+          <DefaultText
+            customStyle={[
               globalStyle.LSize,
               style.option,
               item.value === userOption
@@ -36,7 +36,7 @@ const RadioGroup: React.FC<{
                 : {color: Colors.black},
             ]}>
             {item.value}
-          </Text>
+          </DefaultText>
         </Pressable>
       ))}
     </View>
