@@ -19,7 +19,7 @@ const Intro: React.FC = () => {
   const navigation = useNavigation<Navigation>();
 
   return (
-    <SafeAreaView style={[globalStyle.flex, style.loginContainer]}>
+    <View style={[globalStyle.flex, style.loginContainer]}>
       <ImageBackground
         resizeMode={'cover'}
         source={require('../../assets/images/blob.png')}
@@ -56,7 +56,7 @@ const Intro: React.FC = () => {
           </View>
         </ScrollView>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 

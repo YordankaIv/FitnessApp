@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, SafeAreaView, ScrollView} from 'react-native';
+import {ImageBackground, ScrollView, View} from 'react-native';
 import {auth} from '../../utils/constants';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Login, Registration} from '../../components';
@@ -11,7 +11,7 @@ const Account: React.FC = () => {
   const Tab = createMaterialTopTabNavigator();
 
   return (
-    <SafeAreaView style={[globalStyle.flex, style.loginContainer]}>
+    <View style={[globalStyle.flex, style.loginContainer]}>
       <ImageBackground
         resizeMode={'cover'}
         source={require('../../assets/images/blob.png')}
@@ -31,7 +31,7 @@ const Account: React.FC = () => {
           </Tab.Navigator>
         </ScrollView>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 

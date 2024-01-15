@@ -26,7 +26,7 @@ const Step3: React.FC = () => {
   return (
     <View style={globalStyle.LMarginTop}>
       <RadioGroup
-        data={fitnessLevels}
+        radioButtons={fitnessLevels}
         onSelect={onSelectOption}
         selectedValue={wizardData.goal}
       />

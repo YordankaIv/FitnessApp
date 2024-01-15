@@ -6,6 +6,7 @@ import {loginUser} from '../../api/user';
 import {
   ButtonType,
   Fields,
+  FirebaseUser,
   FormField,
   KeyboardType,
   LoginForm,
@@ -25,18 +26,12 @@ const Login: React.FC = () => {
   const navigation = useNavigation<Navigation>();
 
   const {mutate: mutateSignIn, error} = useMutation({
-    mutationFn: async (data: LoginForm) => {
-      return await loginUser(data.email, data.password);
+    mutationFn: async (formValues: LoginForm) => {
+      const {email, password} = formValues;
+      return await loginUser(email, password);
     },
-    onSuccess: (user: {
-      status: boolean;
-      data: {
-        displayName: string | null;
-        email: string | null;
-        token: string;
-      };
-    }) => {
-      dispatch(logIn(user.data));
+    onSuccess: (signedInUser: FirebaseUser) => {
+      dispatch(logIn(signedInUser.data));
       navigation.navigate(Routes.FitnessWizard);
     },
   });
@@ -58,17 +53,20 @@ const Login: React.FC = () => {
     },
   ];
 
-  const onPressSignIn = async (data?: LoginForm) => {
-    if (data) {
-      mutateSignIn({email: data.email, password: data.password});
+  const onPressSignIn = async (formValues?: LoginForm) => {
+    if (!formValues) {
+      return;
     }
+
+    const {email, password} = formValues;
+    mutateSignIn({email, password});
   };
 
   const loginButtons = [
     {
       title: auth.SIGN_IN,
       type: ButtonType.submit,
-      onPress: (data?: LoginForm) => onPressSignIn(data),
+      onPress: (formValues?: LoginForm) => onPressSignIn(formValues),
     },
   ];
 

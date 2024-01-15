@@ -53,18 +53,19 @@ const Step1: React.FC = () => {
     },
   ];
 
-  const onPressNext = async (data?: Step1Form) => {
-    if (data) {
-      dispatch(updateUserData(data));
-      nextStep();
+  const onPressNext = async (formValues?: Step1Form) => {
+    if (!formValues) {
+      return;
     }
+    dispatch(updateUserData(formValues));
+    nextStep();
   };
 
   const userButtons = [
     {
       title: wizard.NEXT,
       type: ButtonType.submit,
-      onPress: (data?: Step1Form) => onPressNext(data),
+      onPress: (formValues?: Step1Form) => onPressNext(formValues),
     },
   ];
 
