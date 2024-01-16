@@ -4,6 +4,18 @@ import database, {
 } from '@react-native-firebase/database';
 import {ExerciseDetailsForm} from '../types/CommonTypes';
 
+const getDatabaseUserReference = (path: string, userId: string) => {
+  return database().ref(path).child(userId);
+};
+
+const getDatabaseSubReference = (
+  path: string,
+  userId: string,
+  subpath: string,
+) => {
+  return database().ref(path).child(`${userId}/${subpath}`);
+};
+
 export const getUserId = () => {
   const user = firebase.auth().currentUser;
   const uid = user ? user.uid : '';
@@ -12,7 +24,8 @@ export const getUserId = () => {
 };
 
 export const getData = async (path: string, userId: string) => {
-  return await database().ref(path).child(userId).once('value');
+  const userRef = getDatabaseUserReference(path, userId);
+  return await userRef.once('value');
 };
 
 export const getSubData = async (
@@ -20,7 +33,17 @@ export const getSubData = async (
   subpath: string,
   userId: string,
 ) => {
-  return await database().ref(path).child(`${userId}/${subpath}`).once('value');
+  const ref = getDatabaseSubReference(path, userId, subpath);
+  return await ref.once('value');
+};
+
+export const removeSubData = async (
+  path: string,
+  userId: string,
+  subpath: string,
+) => {
+  const ref = getDatabaseSubReference(path, userId, subpath);
+  return await ref.remove();
 };
 
 export const getSubArray = async (
@@ -45,7 +68,8 @@ export const getSubArray = async (
 };
 
 export const saveData = async <T>(path: string, userId: string, data: T) => {
-  return await database().ref(path).child(userId).set(data);
+  const userRef = getDatabaseUserReference(path, userId);
+  return await userRef.set(data);
 };
 
 export const upsertFirebaseItem = async <T>(

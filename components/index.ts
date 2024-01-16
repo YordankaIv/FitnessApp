@@ -20,6 +20,7 @@ import StepWrapper from './StepWrapper/StepWrapper';
 import Switch from './Switch/Switch';
 import WizardFooter from './WizardFooter/WizardFooter';
 import DefaultText from './DefaultText/DefaultText';
+import Loading from './Loading/Loading';
 
 export {
   Button,
@@ -44,4 +45,5 @@ export {
   Exercises,
   ExerciseActions,
   ExerciseForm,
+  Loading,
 };

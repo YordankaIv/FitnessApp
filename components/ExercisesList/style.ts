@@ -15,12 +15,19 @@ const style = StyleSheet.create({
     borderColor: Colors.black,
     borderWidth: 1,
   },
+  exercisesListContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   exerciseContainer: {
     backgroundColor: Colors.lightPink,
     borderRadius: horizontalScale(10),
     paddingVertical: verticalScale(15),
     paddingHorizontal: horizontalScale(25),
-    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginVertical: verticalScale(10),
   },
   exerciseText: {

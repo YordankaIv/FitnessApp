@@ -19,10 +19,10 @@ const NonAuthenticated = () => {
 const Authenticated = () => {
   return (
     <Stack.Navigator
-      initialRouteName={Routes.FitnessWizard}
+      initialRouteName={Routes.Dashboard}
       screenOptions={{header: () => null, headerShown: false}}>
-      <Stack.Screen name={Routes.FitnessWizard} component={FitnessWizard} />
       <Stack.Screen name={Routes.Dashboard} component={Dashboard} />
+      <Stack.Screen name={Routes.FitnessWizard} component={FitnessWizard} />
     </Stack.Navigator>
   );
 };

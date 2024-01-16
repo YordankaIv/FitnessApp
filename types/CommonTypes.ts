@@ -101,6 +101,7 @@ export interface User {
   weight: string;
   level: string;
   workouts: WorkoutListItem[];
+  isWizardFilled?: boolean;
 }
 
 export interface FormProps<T extends FieldValues> {
