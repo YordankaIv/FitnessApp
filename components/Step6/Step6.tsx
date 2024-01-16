@@ -19,7 +19,8 @@ const Step6: React.FC = () => {
 
   const {mutate: mutateSaveFitnessData} = useMutation({
     mutationFn: async (user: User) => {
-      return await saveData(paths.USERS_PATH, uid, user);
+      const isWizardFilled = true;
+      return await saveData(paths.USERS_PATH, uid, {...user, isWizardFilled});
     },
   });
 

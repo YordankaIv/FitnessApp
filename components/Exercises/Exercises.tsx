@@ -6,6 +6,7 @@ import {getSubData, getUserId} from '../../utils/firebaseUtils';
 import {Navigation, WorkoutListItem} from '../../types/CommonTypes';
 import {useNavigation} from '@react-navigation/native';
 import {FirebaseDatabaseTypes} from '@react-native-firebase/database';
+import Loading from '../Loading/Loading';
 
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
@@ -50,20 +51,20 @@ const Exercises: React.FC = () => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={globalStyle.pageContainer}>
-      <View style={[globalStyle.flex]}>
-        {savedWorkouts && (
-          <>
-            {savedWorkouts.map((workout, index) => (
-              <Pressable
-                key={index}
-                onPress={() => onPressWorkout(workout.key)}
-                style={[style.workoutContainer, style.shadowProp]}>
-                <Text>{workout.label}</Text>
-              </Pressable>
-            ))}
-          </>
-        )}
-      </View>
+      {savedWorkouts ? (
+        <View style={[globalStyle.flex]}>
+          {savedWorkouts.map((workout, index) => (
+            <Pressable
+              key={index}
+              onPress={() => onPressWorkout(workout.key)}
+              style={[style.workoutContainer, style.shadowProp]}>
+              <Text>{workout.label}</Text>
+            </Pressable>
+          ))}
+        </View>
+      ) : (
+        <Loading />
+      )}
     </ScrollView>
   );
 };

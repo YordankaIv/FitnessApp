@@ -9,14 +9,12 @@ import {ExerciseDetailsForm, Navigation} from '../../types/CommonTypes';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import ExerciseForm from '../ExerciseForm/ExerciseForm';
 import {useQuery} from 'react-query';
-import {getExercisesPath} from '../../utils/utils';
 
 const ExerciseActions: React.FC = () => {
   const navigation = useNavigation<Navigation>();
   const uid = getUserId();
   const route = useRoute();
   const {workoutKey, exerciseKey} = route.params;
-  const subpath = getExercisesPath(workoutKey);
   const buttonTitle = exerciseKey
     ? exercises.EDIT_EXERCISE
     : exercises.ADD_EXERCISE;
@@ -24,7 +22,7 @@ const ExerciseActions: React.FC = () => {
   const getExercise = async () => {
     const subDataResponse = await getSubData(
       paths.USERS_PATH,
-      `${subpath}/${exerciseKey}`,
+      `/${paths.EXERCISES_PATH}/${exerciseKey}`,
       uid,
     );
     return subDataResponse.val();
@@ -40,9 +38,11 @@ const ExerciseActions: React.FC = () => {
       return;
     }
 
+    exercise.workoutId = workoutKey;
+
     await upsertFirebaseItem(
       paths.USERS_PATH,
-      `${uid}/${subpath}`,
+      `${uid}/${paths.EXERCISES_PATH}`,
       exercise,
       exerciseKey,
     );

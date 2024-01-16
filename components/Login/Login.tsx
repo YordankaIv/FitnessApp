@@ -32,7 +32,7 @@ const Login: React.FC = () => {
     },
     onSuccess: (signedInUser: FirebaseUser) => {
       dispatch(logIn(signedInUser.data));
-      navigation.navigate(Routes.FitnessWizard);
+      navigation.navigate(Routes.Dashboard);
     },
   });
 
